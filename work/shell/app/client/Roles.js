@@ -1,32 +1,22 @@
-isc.defineClass("Users", "myWindow").addProperties({
-	title: "Users",
+isc.defineClass("Roles", "myWindow").addProperties({
+	title: "Roles",
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
-		this.UsersDS = isc.myDataSource.create({
+		this.RoleDS = isc.myDataSource.create({
 			parent: this,
-			dataURL: serverPath + "Users.php",
+			dataURL: serverPath + "Roles.php",
 			fields:[
 				{
-					name: "userID",
+					name: "roleID",
 					primaryKey: true,
 					type: "sequence",
 					canEdit: false,
 					detail: true
 				},
 				{
-					name: "userName",
+					name: "role",
 					type: "text",
 					width: "*"
-				},
-				{
-					name: "firstName",
-					type: "text",
-					width: 80
-				},
-				{
-					name: "lastName",
-					type: "text",
-					width: 80
 				},
 				{	name: "active", 
 					type: "text", 
@@ -42,30 +32,22 @@ isc.defineClass("Users", "myWindow").addProperties({
 				}
 			]
 		});
-		this.UsersLG = isc.myListGrid.create({
+		this.RoleLG = isc.myListGrid.create({
 			parent: this,
 			showFilterEditor: true,
-			dataSource: this.UsersDS,
+			dataSource: this.RoleDS,
 			rowContextClick: function(record, rowNum, colNum){
 				this.parent.localContextMenu.showContextMenu();
 				return false;
 			},
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
 				this.startEditing(recordNum);
-			},
-			updateStatus: function() {
-				var statusText = this.getTotalRows() + " Rows";
-				this.parent.setTitle("Task Entry - " + statusText);
-				this.focus();
-			},
-			dataProperties: {
-				dataArrived: this.getID() + ".UsersLG.updateStatus()"
 			}
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,
-			callingListGrid: this.UsersLG
+			callingListGrid: this.RoleLG
 		});
-		this.addItem(isc.myVLayout.create({members: [this.UsersLG]}));
+		this.addItem(isc.myVLayout.create({members: [this.RoleLG]}));
 	}
 });

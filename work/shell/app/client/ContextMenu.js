@@ -43,6 +43,19 @@ isc.defineClass("myContextMenu", "myMenu").addProperties({
 					isc.say(copyValues(record));
 				}
 			}
+		},
+		{title: "Preview",
+			click: function(target, item, menu, colNum){
+				var record = menu.callingListGrid.getSelectedRecord();
+				isc.Preview.create({
+					title: "Preview ",
+					record: record,
+					height: "90%",
+					width: 800,
+					left: 50,
+					top: 50
+				});
+			}
 		}
 	]
 });

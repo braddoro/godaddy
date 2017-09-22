@@ -20,7 +20,8 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					optionCriteria: {active: "Y"},
 					displayField: "userName",
 					valueField: "userID",
-					required: true
+					required: true,
+					width: 100
 				},
 				{
 					name: "duration",

@@ -1,4 +1,7 @@
 isc.Shared = {
+	userDataDS: isc.myDataSource.create({
+		clientOnly: true
+	}),
 	epicListDS: isc.myDataSource.create({
 		dataURL: serverPath + "Epics.php",
 		fields:[
