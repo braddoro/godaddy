@@ -5,7 +5,6 @@ $dbhost = $server_array['database']['hostname'];
 $dbuser = $server_array['database']['username'];
 $dbpass = $server_array['database']['password'];
 $schema = $server_array['database']['dbname'];
-$rows = array();
 $username = $argsIN['USER_NAME'];
 $password = $argsIN['PASSWORD'];
 $sql = "select * from users where login = '{$username}' and password = '{$password}' and active = 'Y'";
@@ -19,10 +18,17 @@ if (!$result = $mysqli->query($sql)) {
 	echo "Error: " . $mysqli->error . "\n";
 	exit();
 }
+$rows = array();
 $line = array();
+$record = array();
 while ($row = $result->fetch_object()) {
+	$record = array();
 	foreach($row as $key => $value){
 		$line[$key] = $value;
+		$record['name'] = $key;
+		$record['value'] = $value;
+		$record['type'] = 'text';
+		//$rows[] = $record;
 	}
 	$rows[] = $line;
 }

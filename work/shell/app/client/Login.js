@@ -5,7 +5,7 @@ isc.defineClass("Login", "myWindow").addProperties({
 	height: 100,
 	width: 300,
 	margin: 1,
-	//isModal: true,
+	isModal: true,
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.LoginDS = isc.myDataSource.create({
@@ -35,9 +35,15 @@ isc.defineClass("Login", "myWindow").addProperties({
 		this.LoginDS.addData(formData,{target: this, methodName: "submitData_callback"});
 	},
 	submitData_callback: function(rpcResponse){
-		console.log(rpcResponse.data[0]);
 		var userData = rpcResponse.data[0];
-		isc.Server.userDataDS.setCacheData(userData);
-		console.log(isc.Server.userDataDS.getField("userID"));
+		if(userData === undefined){
+			isc.warn("Improper Credentials");
+		} else {
+			isc.userData = userData;
+			this.destroy();
+		}
 	}
 });
+// for (i in userData) {
+// 	console.log(userData[i]);
+// }

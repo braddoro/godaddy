@@ -1,6 +1,26 @@
+// fields: [
+// 	active: "",
+// 	firstName: "",
+// 	lastChangeDate: "",
+// 	lastName: "",
+// 	login: "",
+// 	password: "",
+// 	userID: "",
+// 	userName: ""
+// ]
 isc.Shared = {
 	userDataDS: isc.myDataSource.create({
-		clientOnly: true
+		clientOnly: true,
+		fields:[
+			{name: "active", type: "text"},
+			{name: "firstName", type: "text"},
+			{name: "lastChangeDate", type: "text"},
+			{name: "lastName", type: "text"},
+			{name: "login", type: "text"},
+			{name: "password", type: "text"},
+			{name: "userID", type: "sequence", primaryKey: true},
+			{name: "userName", type: "text"}
+		]
 	}),
 	epicListDS: isc.myDataSource.create({
 		dataURL: serverPath + "Epics.php",

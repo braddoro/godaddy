@@ -21,7 +21,8 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					displayField: "userName",
 					valueField: "userID",
 					required: true,
-					width: 100
+					width: 100,
+					defaultValue: isc.userData.userID
 				},
 				{
 					name: "duration",
@@ -96,8 +97,8 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			},
 			startEditingNew: function(newValues, suppressFocus){
 				var today = new Date();
-				var rowDefaults = {duration: .25, taskDate: today};	
-				var newCriteria = isc.addProperties({}, newValues, rowDefaults);						
+				var rowDefaults = {duration: .25, taskDate: today, userID: isc.userData.userID};
+				var newCriteria = isc.addProperties({}, newValues, rowDefaults);
 				return this.Super("startEditingNew", [newCriteria, suppressFocus]);
 			},
 			dataProperties: {

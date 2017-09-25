@@ -7,7 +7,9 @@ isc.defineClass("BrewLog", "myWindow").addProperties({
 			canAddFormulaFields: true,
 			fields:[
 				{name: "brewLogID", primaryKey: true, type: "sequence", detail: true, canEdit: false},
-				{name: "userID", type: "integer",
+				{name: "userID",
+					type: "integer",
+					defaultValue: isc.userData.userID,
 					optionDataSource: isc.Shared.taskUsersDS,
 					optionCriteria: {active: "Y"},
 					displayField: "userName",
@@ -56,7 +58,7 @@ isc.defineClass("BrewLog", "myWindow").addProperties({
  			startEditingNew: function(newValues, suppressFocus){
 				var now = new Date();
 				var today = now.toSerializeableDate();
-				var defaults = {brewDate: today, userID: 1, mashTemp: 152, mashRatio: 1.5, mashTime: 60, boilTime: 60, yeastStarter: "N"};
+				var defaults = {brewDate: today, userID: isc.userData.userID, mashTemp: 152, mashRatio: 1.5, mashTime: 60, boilTime: 60, yeastStarter: "N"};
 				var moreCriteria = isc.addProperties({}, newValues, defaults);
  				return this.Super("startEditingNew", [moreCriteria, suppressFocus]);
  			},

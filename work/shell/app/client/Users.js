@@ -28,11 +28,21 @@ isc.defineClass("Users", "myWindow").addProperties({
 					type: "text",
 					width: 80
 				},
-				{	name: "active", 
-					type: "text", 
-					editorType: "selectItem", 
-					defaultValue: "Y", 
-					valueMap: {"Y" : "Yes", "N" : "No"}, 
+				{
+					name: "login",
+					type: "text",
+					width: 80
+				},
+				{
+					name: "password",
+					type: "text",
+					width: 80
+				},
+				{	name: "active",
+					type: "text",
+					editorType: "selectItem",
+					defaultValue: "Y",
+					valueMap: {"Y" : "Yes", "N" : "No"},
 					width: 80
 				},
 				{
