@@ -33,6 +33,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 				{
 					name: "taskCategoryID",
 					type: "integer",
+					showGridSummary: false,
 					optionDataSource: isc.Shared.taskCategoryDS,
 					displayField: "categoryName",
 					valueField: "categoryID",
@@ -43,9 +44,11 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					name: "projectID",
 					type: "integer",
 					optionDataSource: isc.Shared.taskProjectsDS,
+					optionCriteria: {active: "Y"},
 					displayField: "projectName",
 					valueField: "projectID",
 					required: true,
+					showGridSummary: false,
 					pickListWidth: 250,
 					pickListFields: [
 						{name: "projectCode", width: 75},
@@ -83,6 +86,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			parent: this,
 			showFilterEditor: true,
 			dataSource: this.TasksDS,
+			showGridSummary: true,
 			rowContextClick: function(record, rowNum, colNum){
 				this.parent.localContextMenu.showContextMenu();
 				return false;

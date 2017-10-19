@@ -1,8 +1,8 @@
 <?php
 require_once('../../../DataModel/DataModel.php');
 $params = array(
-	'baseTable' => 'quotes',
-	'pk_col' => 'quoteID',
+	'baseTable' => 'threads',
+	'pk_col' => 'threadID',
 	'allowedOperations' => array('fetch','add','update','remove'),
 	'ini_file' => realpath('../../lib/server.ini')
 );

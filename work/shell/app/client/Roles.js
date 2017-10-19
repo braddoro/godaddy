@@ -1,5 +1,7 @@
 isc.defineClass("Roles", "myWindow").addProperties({
 	title: "Roles",
+	left: isc.Math.random(150),
+	top: isc.Math.random(150),
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.RoleDS = isc.myDataSource.create({
@@ -18,11 +20,11 @@ isc.defineClass("Roles", "myWindow").addProperties({
 					type: "text",
 					width: "*"
 				},
-				{	name: "active", 
-					type: "text", 
-					editorType: "selectItem", 
-					defaultValue: "Y", 
-					valueMap: {"Y" : "Yes", "N" : "No"}, 
+				{	name: "active",
+					type: "text",
+					editorType: "selectItem",
+					defaultValue: "Y",
+					valueMap: {"Y" : "Yes", "N" : "No"},
 					width: 80
 				},
 				{

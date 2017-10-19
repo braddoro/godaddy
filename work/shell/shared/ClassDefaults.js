@@ -87,6 +87,26 @@ isc.defineClass("myListGrid", "ListGrid").addProperties({
 	modalEditing: true
 });
 
+isc.defineClass("myListGrid2", "ListGrid").addProperties({
+	alternateRecordStyles: true,
+	leaveScrollbarGap: false,
+	showFilterEditor: false,
+	showAllRecords: true,
+	autoFetchData: true,
+	modalEditing: true,
+	rowContextClick: function(record, rowNum, colNum){
+		this.parent.localContextMenu.showContextMenu();
+		return false;
+	},
+	rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
+		this.startEditing(recordNum);
+	},
+	updateStatus: function() {
+		var statusText = this.getTotalRows() + " Rows";
+		this.parent.setTitle("Rows - " + statusText);
+		this.focus();
+	}
+});
 isc.defineClass("myDynamicForm", "DynamicForm").addProperties({
 	validateOnChange: true
 });

@@ -9,14 +9,14 @@ isc.defineClass("Navigation", "Menu").addProperties({
 				{title: "User Stories", click: "isc.UserStories.create()"}
 			]
 		});
-		this.TaskMenu = isc.myMenu.create({
+		this.MiscTables = isc.myMenu.create({
 			title: "Task Entry",
 			items: [
-				{title: "Projects", click: "isc.TaskProjects.create({width: 800, height: 300, top: 25, left: 5})"},
-				{title: "Categories", click: "isc.TaskCategories.create({width: 500, height: 300, top: 75, left: 5})"},
-				{title: "Users", click: "isc.Users.create({width: 600, height: 300, top: 5, left: 50})"},
-				{title: "Roles", click: "isc.Roles.create({width: 200, height: 300, top: 5, left: 50})"},
-				{title: "User Roles", click: "isc.UserRoles.create({width: 200, height: 300, top: 5, left: 50})"}
+				{title: "Projects", click: "isc.TaskProjects.create({width: 800, height: 300})"},
+				{title: "Categories", click: "isc.TaskCategories.create({width: 500, height: 300})"},
+				{title: "Users", click: "isc.Users.create({width: 600, height: 300})"},
+				{title: "Roles", click: "isc.Roles.create({width: 200, height: 300})"},
+				{title: "User Roles", click: "isc.UserRoles.create({width: 200, height: 300})"}
 			]
 		});
 		this.mainMenu = isc.myMenu.create({
@@ -24,11 +24,12 @@ isc.defineClass("Navigation", "Menu").addProperties({
 			showShadow: true,
 			items: [
 				{title: "Tasks", click: "isc.Tasks.create({width: 1000, height: 600, top: 5, left: 25})"},
-				{title: "Task Misc", submenu: this.TaskMenu},
-				{title: "Agile", enabled: false, submenu: this.AgileMenu},
 				{isSeparator: true},
-				{title: "To Do Items", click: "isc.Items.create({test1: \"foo\", test2: 22, width: 500})"},
+				{title: "To Do Items", click: "isc.Items.create({width: 800})"},
+				{title: "Misc Tables", submenu: this.MiscTables},
+				{title: "Agile", enabled: false, submenu: this.AgileMenu},
 				{title: "Quotes", click: "isc.Quotes.create({width: 600, height: 300})"},
+				{title: "Threads", click: "isc.Threads.create({width: 600, height: 300})"},
 				{title: "Brew Log", click: "isc.BrewLog.create({width: \"95%\", height: \"50%\"})"}
 			]
 		});

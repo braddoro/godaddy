@@ -1,14 +1,18 @@
 isc.defineClass("Items", "myWindow").addProperties({
 	title: "Items",
+	left: isc.Math.random(150),
+	top: isc.Math.random(150),
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.ItemsDS = isc.myDataSource.create({
 			dataURL: serverPath + "Items.php",
 			fields:[
 				{name: "itemID", primaryKey: true, type: "sequence", detail: true, canEdit: false},
+				{name: "userID", type: "integer", optionDataSource: isc.Shared.taskUsersDS, optionCriteria: {active: "Y"}, displayField: "userName", valueField: "userID", required: true, width: 120, defaultValue: isc.userData.userID},
 				{name: "itemDate", width: 120, editorType: "DateItem", inputFormat: "toUSShortDate", displayFormat: "toSerializeableDate", useTextField: true},
-				{name: "userName", width: 80},
-				{name: "item", width: "*"}
+				{name: "type", type: "text"},
+				{name: "item", width: "*"},
+				{name: "lastChangeDate", canEdit: false}
 			]
 		});
 		this.ItemsLG = isc.myListGrid.create({

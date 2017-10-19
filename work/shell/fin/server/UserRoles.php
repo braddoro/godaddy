@@ -1,8 +1,8 @@
 <?php
 require_once('../../../DataModel/DataModel.php');
 $params = array(
-	'baseTable' => 'quotes',
-	'pk_col' => 'quoteID',
+	'baseTable' => 'userRoles',
+	'pk_col' => 'userRoleID',
 	'allowedOperations' => array('fetch','add','update','remove'),
 	'ini_file' => realpath('../../lib/server.ini')
 );
@@ -27,10 +27,6 @@ case 'update':
 	break;
 case 'remove':
 	$response = $lclass->pdoRemove($argsIN);
-	break;
-case 'random':
-	//$argsIN['sql'] = 'SELECT * FROM quotes ORDER BY RAND() LIMIT 0,1;';
-	$response = $lclass->pdoFetch($argsIN);
 	break;
 default:
 	$response = array('status' => 0);
