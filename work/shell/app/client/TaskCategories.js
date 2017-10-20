@@ -16,16 +16,9 @@ isc.defineClass("TaskCategories", "myWindow").addProperties({
 				{name: "lastChangeDate", width: 120, canEdit: false}
 			]
 		});
-		this.TaskCategoriesLG = isc.myListGrid.create({
+		this.TaskCategoriesLG = isc.myListGrid2.create({
 			parent: this,
-			dataSource: this.TaskCategoriesDS,
-			rowContextClick: function(record, rowNum, colNum){
-				this.parent.localContextMenu.showContextMenu();
-				return false;
-			},
-			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
-				this.startEditing(recordNum);
-			}
+			dataSource: this.TaskCategoriesDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,

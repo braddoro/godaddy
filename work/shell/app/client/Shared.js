@@ -1,13 +1,3 @@
-// fields: [
-// 	active: "",
-// 	firstName: "",
-// 	lastChangeDate: "",
-// 	lastName: "",
-// 	login: "",
-// 	password: "",
-// 	userID: "",
-// 	userName: ""
-// ]
 isc.Shared = {
 	userDataDS: isc.myDataSource.create({
 		clientOnly: true,
@@ -47,7 +37,8 @@ isc.Shared = {
 		dataURL: serverPath + "Users.php",
 		fields:[
 			{name: "userID", type: "sequence", primaryKey: true},
-			{name: "userName", type: "text"}
+			{name: "userName", type: "text"},
+			{name: "active", type: "text"}
 		]
 	}),
 	rolesDS: isc.myDataSource.create({

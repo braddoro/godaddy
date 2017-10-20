@@ -32,7 +32,6 @@ $content = '';
 $classes = array();
 $classes[] = "ClassDefaults.js";
 $classes[] = "library.js";
-$classes[] = "Shared.js";
 $classes[] = "ShowInfo.js";
 foreach($classes as $class) {
 	if(file_exists($shared_path . $class)){
@@ -45,16 +44,16 @@ $classes = array();
 $classes[] = "Desktop.js";
 $classes[] = "Navigation.js";
 $classes[] = "ContextMenu.js";
+$classes[] = "Shared.js";
 $classes[] = "Items.js";
 $classes[] = "UserStories.js";
-$classes[] = "Epics.js";
 $classes[] = "Tasks.js";
 $classes[] = "TaskProjects.js";
 $classes[] = "TaskCategories.js";
 $classes[] = "Quotes.js";
 $classes[] = "Threads.js";
-$classes[] = "Login.js";
 $classes[] = "Users.js";
+$classes[] = "Login.js";
 $content = "";
 foreach($classes as $class) {
 	if(file_exists($client_path . $class)){

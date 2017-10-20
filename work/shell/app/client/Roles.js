@@ -34,17 +34,10 @@ isc.defineClass("Roles", "myWindow").addProperties({
 				}
 			]
 		});
-		this.RoleLG = isc.myListGrid.create({
+		this.RoleLG = isc.myListGrid2.create({
 			parent: this,
 			showFilterEditor: true,
-			dataSource: this.RoleDS,
-			rowContextClick: function(record, rowNum, colNum){
-				this.parent.localContextMenu.showContextMenu();
-				return false;
-			},
-			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
-				this.startEditing(recordNum);
-			}
+			dataSource: this.RoleDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,

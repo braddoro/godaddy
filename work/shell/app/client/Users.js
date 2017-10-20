@@ -54,22 +54,10 @@ isc.defineClass("Users", "myWindow").addProperties({
 				}
 			]
 		});
-		this.UsersLG = isc.myListGrid.create({
+		this.UsersLG = isc.myListGrid2.create({
 			parent: this,
 			showFilterEditor: true,
 			dataSource: this.UsersDS,
-			rowContextClick: function(record, rowNum, colNum){
-				this.parent.localContextMenu.showContextMenu();
-				return false;
-			},
-			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
-				this.startEditing(recordNum);
-			},
-			updateStatus: function() {
-				var statusText = this.getTotalRows() + " Rows";
-				this.parent.setTitle("Task Entry - " + statusText);
-				this.focus();
-			},
 			dataProperties: {
 				dataArrived: this.getID() + ".UsersLG.updateStatus()"
 			}

@@ -15,7 +15,6 @@ isc.defineClass("myWindow", "Window").addProperties({
 	left: 25,
 	top: 25
 });
-
 isc.defineClass("myVLayout", "VLayout").addProperties({
 	height: "100%"
 });
@@ -107,6 +106,7 @@ isc.defineClass("myListGrid2", "ListGrid").addProperties({
 		this.focus();
 	}
 });
+
 isc.defineClass("myDynamicForm", "DynamicForm").addProperties({
 	validateOnChange: true
 });

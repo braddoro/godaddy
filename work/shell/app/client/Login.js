@@ -48,6 +48,3 @@ isc.defineClass("Login", "myWindow").addProperties({
 		}
 	}
 });
-// for (i in userData) {
-// 	console.log(userData[i]);
-// }

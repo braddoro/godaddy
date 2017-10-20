@@ -82,23 +82,11 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 				}
 			]
 		});
-		this.TasksLG = isc.myListGrid.create({
+		this.TasksLG = isc.myListGrid2.create({
 			parent: this,
 			showFilterEditor: true,
 			dataSource: this.TasksDS,
 			showGridSummary: true,
-			rowContextClick: function(record, rowNum, colNum){
-				this.parent.localContextMenu.showContextMenu();
-				return false;
-			},
-			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
-				this.startEditing(recordNum);
-			},
-			updateStatus: function(){
-				var statusText = this.getTotalRows() + " Rows";
-				this.parent.setTitle("Task Entry - " + statusText);
-				this.focus();
-			},
 			startEditingNew: function(newValues, suppressFocus){
 				var today = new Date();
 				var rowDefaults = {duration: .25, taskDate: today, userID: isc.userData.userID};
@@ -107,6 +95,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			},
 			dataProperties: {
 				dataArrived: this.getID() + ".TasksLG.updateStatus()"
+				//this.setUserSummary("userID","");
 			}
 		});
 		this.localContextMenu = isc.myContextMenu.create({
