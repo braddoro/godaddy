@@ -59,11 +59,11 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 				{
 					name: "taskDate",
 					title: "Date",
-					// useTextField: true,
 					editorType: "DateItem",
 					validators: [{type: "isDate"}],
-					// defaultValue: new Date(),
 					width: 120
+					// useTextField: true,
+					// defaultValue: new Date(),
 				},
 				{
 					name: "ticketCode",
@@ -84,8 +84,8 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 		});
 		this.TasksLG = isc.myListGrid2.create({
 			parent: this,
-			showFilterEditor: true,
 			dataSource: this.TasksDS,
+			showFilterEditor: true,
 			showGridSummary: true,
 			startEditingNew: function(newValues, suppressFocus){
 				var today = new Date();
@@ -95,7 +95,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			},
 			dataProperties: {
 				dataArrived: this.getID() + ".TasksLG.updateStatus()"
-				//this.setUserSummary("userID","");
 			}
 		});
 		this.localContextMenu = isc.myContextMenu.create({

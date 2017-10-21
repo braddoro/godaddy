@@ -13,28 +13,10 @@ isc.defineClass("TaskProjects", "myWindow").addProperties({
 				{name: "PM",
 					type: "text",
 					width: 150,
-					optionDataSource: isc.Shared.taskUsersDS,
+					optionDataSource: isc.Shared.namesDS,
 					optionCriteria: {active: "Y"},
-					displayField: "userName",
-					valueField: "userID",
-					pickListWidth: 200,
-					pickListFields: [
-						{name: "firstName"},
-						{name: "lastName"}
-					]
-				},
-				{name: "BA",
-					type: "text",
-					width: 150,
-					optionDataSource: isc.Shared.taskUsersDS,
-					optionCriteria: {active: "Y"},
-					displayField: "userName",
-					valueField: "userID",
-					pickListWidth: 200,
-					pickListFields: [
-						{name: "firstName"},
-						{name: "lastName"}
-					]
+					displayField: "name",
+					valueField: "nameID"
 				},
 				{name: "active",
 					type: "text",
