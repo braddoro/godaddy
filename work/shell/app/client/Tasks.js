@@ -22,6 +22,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					valueField: "userID",
 					required: true,
 					width: 100,
+					includeInRecordSummary: false,
 					defaultValue: isc.userData.userID
 				},
 				{

@@ -14,6 +14,7 @@ isc.defineClass("Navigation", "Menu").addProperties({
 			items: [
 				{title: "Projects", click: "isc.TaskProjects.create({width: 800, height: 300})"},
 				{title: "Categories", click: "isc.TaskCategories.create({width: 500, height: 300})"},
+				{title: "Names", click: "isc.Names.create({width: 600, height: 300})"},
 				{title: "Users", click: "isc.Users.create({width: 600, height: 300})"},
 				{title: "Roles", click: "isc.Roles.create({width: 200, height: 300})"},
 				{title: "User Roles", click: "isc.UserRoles.create({width: 200, height: 300})"}

@@ -3,7 +3,7 @@ isc.defineClass("ShowInfo", "myWindow").addProperties({
 	showHeader: false,
 	border: "0px solid black",
 	dynamicContents: true,
-     	contents: "The slider value is.",
+	contents: "The slider value is.",
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.ShowInfoLabel = isc.Label.create({
