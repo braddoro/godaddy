@@ -24,15 +24,15 @@ isc.defineClass("Items", "myWindow").addProperties({
 				var now = new Date();
 				return false;
 			},
- 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
- 				this.startEditing(recordNum);
- 			},
- 			startEditingNew: function(newValues, suppressFocus){
+			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
+				this.startEditing(recordNum);
+			},
+			startEditingNew: function(newValues, suppressFocus){
 				var now = new Date();
 				var today = now.toSerializeableDate();
 				var moreCriteria = isc.addProperties({}, newValues, {itemDate: today});
- 				return this.Super("startEditingNew", [moreCriteria, suppressFocus]);
- 			}
+				return this.Super("startEditingNew", [moreCriteria, suppressFocus]);
+			}
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,
