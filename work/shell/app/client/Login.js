@@ -1,6 +1,7 @@
 isc.defineClass("Login", "myWindow").addProperties({
 	title: "Login",
-	autoCenter: true,
+	top: 50,
+	left: ((Page.getWidth()-300)/2),
 	showHeader: false,
 	height: 100,
 	width: 300,

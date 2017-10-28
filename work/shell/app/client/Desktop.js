@@ -4,6 +4,6 @@ isc.defineClass("Desktop", "Canvas").addProperties({
 		this.deskMenu = isc.Navigation.create();
 		this.addMethods(this.deskMenu);
 		isc.ShowQuote.create({text: initData.text, width: "33%"});
-		isc.Login.create({top: 50, autoCenter: false});
+		isc.Login.create();
 	}
 });
