@@ -15,7 +15,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 				},
 				{
 					name: "userID",
-					type: "integer",
+					type: "text",
 					optionDataSource: isc.Shared.taskUsersDS,
 					optionCriteria: {active: "Y"},
 					displayField: "userName",

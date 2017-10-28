@@ -3,7 +3,7 @@ isc.defineClass("Desktop", "Canvas").addProperties({
 		this.Super("initWidget", arguments);
 		this.deskMenu = isc.Navigation.create();
 		this.addMethods(this.deskMenu);
-		isc.ShowInfo.create({text: initData.text, width: "33%"});
-		isc.Login.create();
+		isc.ShowQuote.create({text: initData.text, width: "33%"});
+		isc.Login.create({top: 50, autoCenter: false});
 	}
 });

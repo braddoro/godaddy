@@ -3,7 +3,7 @@ require_once('../../../DataModel/DataModel.php');
 $params = array(
 	'baseTable' => 'quotes',
 	'pk_col' => 'quoteID',
-	'allowedOperations' => array('fetch','add','update','remove'),
+	'allowedOperations' => array('fetch','add','update','remove','custom'),
 	'ini_file' => realpath('../../lib/server.ini')
 );
 $lclass = New DataModel();
@@ -28,8 +28,9 @@ case 'update':
 case 'remove':
 	$response = $lclass->pdoRemove($argsIN);
 	break;
-case 'random':
-	//$argsIN['sql'] = 'SELECT * FROM quotes ORDER BY RAND() LIMIT 0,1;';
+case 'custom':
+	$argsIN['pkID'] = 1;
+	$argsIN['sql'] = "SELECT CONCAT(quote, ' &ndash; ', attribution) AS quote FROM quotes ORDER BY RAND() LIMIT 0,1;";
 	$response = $lclass->pdoFetch($argsIN);
 	break;
 default:
