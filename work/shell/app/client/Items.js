@@ -1,4 +1,4 @@
-isc.defineClass("Items", "myWindow").addProperties({
+git pushisc.defineClass("Items", "myWindow").addProperties({
 	title: "Items",
 	left: isc.Math.random(150),
 	top: isc.Math.random(150),

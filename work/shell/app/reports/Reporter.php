@@ -7,10 +7,9 @@ class Reporter {
 
 		// Set up the title.
 		//
+		$title = 'Unnamed Query';
 		if(isset($params['title'])){
 			$title = $params['title'];
-		} else {
-			$title = 'Unnamed Query';
 		}
 
 		// Make sure we have an sql query.
@@ -24,25 +23,21 @@ class Reporter {
 
 		// Is there an ini file?
 		//
-
 		if(isset($params['ini_file'])){
-			$ini_file = $params['ini_file'];			
+			$ini_file = $params['ini_file'];
 			// Is the path right for the ini file?
 			//
 			if(!file_exists($ini_file)){
 				return 'Unable to locate connection information.';
 			}
 		} else {
-//			$ini_file = '../shell/lib/server.ini';
 			return 'Connection information is not provided.';
 		}
-
-//		$ini_file = '../../lib/server.ini';
 
 		$show_total = false;
 		if(isset($params['show_total'])){
 			if(is_bool($params['show_total'])){
-				$show_total = (isset($params['show_total'])) ? $params['show_total'] : false;			
+				$show_total = (isset($params['show_total'])) ? $params['show_total'] : false;
 			}
 		}
 
@@ -53,7 +48,7 @@ class Reporter {
 
 		$view_params['title'] = $title;
 		$view_params['data'] = $data;
-		$view_params['show_total'] = $show_total;		
+		$view_params['show_total'] = $show_total;
 		$html = $this->report_view($view_params);
 
 		return $html;

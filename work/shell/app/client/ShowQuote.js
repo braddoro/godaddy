@@ -3,7 +3,7 @@ isc.defineClass("ShowQuote", "myWindow").addProperties({
 	showHeader: false,
 	border: "0px solid black",
 	dynamicContents: true,
-	contents: "The slider value is.",
+	contents: "",
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.GetQuotesDS = isc.myDataSource.create({
