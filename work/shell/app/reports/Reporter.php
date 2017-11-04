@@ -23,6 +23,9 @@ class Reporter {
 
 		// Is there an ini file?
 		//
+		if(!isset($params['ini_file'])){
+			return 'Connection information is not provided.';
+		}
 		if(isset($params['ini_file'])){
 			$ini_file = $params['ini_file'];
 			// Is the path right for the ini file?
@@ -30,8 +33,6 @@ class Reporter {
 			if(!file_exists($ini_file)){
 				return 'Unable to locate connection information.';
 			}
-		} else {
-			return 'Connection information is not provided.';
 		}
 
 		$show_total = false;
