@@ -38,6 +38,7 @@ $params['ini_file'] = '../../lib/server.ini';
 $lclass = New Reporter();
 
 $params['title'] = 'Total';
+$params['tooltip'] = 'Total';
 $params['sql'] = '
 	select
 		sum(T.duration) Hours
@@ -50,7 +51,7 @@ $params['sql'] = '
 	;';
 $html .= $lclass->init($params);
 
-//$total = get_string_between($html,'<td>','</td>')
+$total = get_string_between($html,'<td>','</td>');
 
 $lclass = New Reporter();
 $params['title'] = 'Tasks by Project';
@@ -58,7 +59,8 @@ $params['sql'] = '
 		select
 			P.projectCode,
 			P.projectName,
-			sum(T.duration) as Hours
+			sum(T.duration) as Hours,
+			round(round(sum(T.duration)/ ' . $total . ',3)*100,1) Percent
 		from tasks T
 			inner join taskProjects P on T.projectID = P.projectID
 		where
@@ -78,7 +80,8 @@ $params['title'] = 'Tasks by Category';
 $params['sql'] = '
 	select
 		C.categoryName,
-		sum(T.duration) as Hours
+		sum(T.duration) as Hours,
+		round(round(sum(T.duration)/ ' . $total . ',3)*100,1) Percent
 	from tasks T
 		inner join taskCategories C on T.taskCategoryID = C.categoryID
 	where
@@ -92,29 +95,77 @@ $params['sql'] = '
 $html .= $lclass->init($params);
 
 $lclass = New Reporter();
-$params['title'] = 'Administrative Work Breakdown';
+$params['title'] = 'Administration Work Breakdown';
 $params['sql'] = '
 	select
 		P.projectCode,
 		P.projectName,
-		T.ticketCode,
-		sum(T.duration) as Hours
+		coalesce(T.ticketCode,T.description) as ticketCode,
+		sum(T.duration) as Hours,
+		round(round(sum(T.duration)/ ' . $total . ',3)*100,1) Percent
 	from tasks T
 		inner join taskProjects P on T.projectID = P.projectID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate
-		and P.projectCode in (\'0000-0000\',\'0000-0001\')
+		and P.projectCode like (\'0000-%\')
 	group by
 		P.projectCode,
 		P.projectName,
-		T.ticketCode
+		coalesce(T.ticketCode,T.description)
 	order by
 		P.projectCode,
 		P.projectName,
-		T.ticketCode
+		coalesce(T.ticketCode,T.description)
 	;';
 $html .= $lclass->init($params);
+
+$lclass = New Reporter();
+$params['title'] = 'Administration Summary';
+$params['sql'] = '
+	select
+		P.projectCode,
+		P.projectName,
+		sum(T.duration) as Hours,
+		round(round(sum(T.duration)/ ' . $total . ',3)*100,1) Percent
+	from tasks T
+		inner join taskProjects P on T.projectID = P.projectID
+	where
+		userID = :userid
+		and T.taskDate between :startdate and :enddate
+		and P.projectCode like (\'0000-%\')
+	group by
+		P.projectCode,
+		P.projectName
+	order by
+		P.projectCode,
+		P.projectName
+	;';
+$html .= $lclass->init($params);
+
+$lclass = New Reporter();
+$params['title'] = 'Project Summary';
+$params['sql'] = '
+	select
+		P.projectCode,
+		P.projectName,
+		sum(T.duration) as Hours,
+		round(round(sum(T.duration)/ ' . $total . ',3)*100,1) Percent
+	from tasks T
+		inner join taskProjects P on T.projectID = P.projectID
+	where
+		userID = :userid
+		and T.taskDate between :startdate and :enddate
+		and P.projectCode not like (\'0000-%\')
+	group by
+		P.projectCode,
+		P.projectName
+	order by
+		P.projectCode,
+		P.projectName
+	;';
+$html .= $lclass->init($params);
+
 
 $lclass = New Reporter();
 $params['title'] = 'Tasks by Category and Project';
@@ -123,7 +174,8 @@ $params['sql'] = '
 		C.categoryName,
 		P.projectCode,
 		P.projectName,
-		sum(T.duration) as Hours
+		sum(T.duration) as Hours,
+		round(round(sum(T.duration)/ ' . $total . ',3)*100,1) Percent
 	from tasks T
 		inner join taskProjects P on T.projectID = P.projectID
 		inner join taskCategories C on T.taskCategoryID = C.categoryID
@@ -147,7 +199,8 @@ $params['sql'] = '
 		P.projectCode,
 		P.projectName,
 		C.categoryName,
-		sum(T.duration) Hours
+		sum(T.duration) Hours,
+		round(round(sum(T.duration)/ ' . $total . ',3)*100,1) Percent
 	from tasks T
 		inner join taskProjects P on T.projectID = P.projectID
 		inner join taskCategories C on T.taskCategoryID = C.categoryID

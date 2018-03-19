@@ -17,6 +17,17 @@ $argsIN = array_merge($_POST,$_GET);
 $operationType = (isset($argsIN['operationType'])) ? $argsIN['operationType'] : null;
 switch($operationType){
 case 'fetch':
+	// if(isset($argsIN['taskID'])) {
+	// 	$taskID = ($argsIN['taskID'] > 0) ? $argsIN['taskID'] : NULL;
+	// }else{
+	// 	$taskID = 'NULL';
+	// }
+	// $taskDate = NULL;
+	// if(isset($argsIN['taskDate'])){
+	// 	$argsIN['taskDate'] = date_create()->format('Y-m-d');
+	// 	$taskDate = $argsIN['taskDate'];
+	// }
+	// $argsIN['sql'] = "SELECT T.* FROM tasks T WHERE T.taskID = coalesce(:id,T.taskID) and T.taskDate >= coalesce('$taskDate',T.taskDate)";
 	$response = $lclass->pdoFetch($argsIN);
 	break;
 case 'add':

@@ -17,6 +17,18 @@ $argsIN = array_merge($_POST,$_GET);
 $operationType = (isset($argsIN['operationType'])) ? $argsIN['operationType'] : null;
 switch($operationType){
 case 'fetch':
+	if(isset($argsIN['categoryID'])) {
+		$categoryID = ($argsIN['categoryID'] > 0) ? $argsIN['categoryID'] : NULL;
+	}else{
+		$categoryID = 'NULL';
+	}
+	if(isset($argsIN['status'])) {
+		$status = ($argsIN['status'] > 0) ? $argsIN['status'] : NULL;
+	}else{
+		$status = 'NULL';
+	}
+	$argsIN['sql'] = "SELECT C.* FROM taskCategories C WHERE C.categoryID = coalesce(:id,C.categoryID) and C.status = coalesce($status,C.status) order by C.displayOrder, C.CategoryName";
+	// echo '/*' . $argsIN['sql'] . '*/';
 	$response = $lclass->pdoFetch($argsIN);
 	break;
 case 'add':

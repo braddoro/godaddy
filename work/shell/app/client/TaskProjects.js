@@ -18,6 +18,10 @@ isc.defineClass("TaskProjects", "myWindow").addProperties({
 					displayField: "name",
 					valueField: "nameID"
 				},
+				{name: "status",
+					type: "interger",
+					defaultValue: 1
+				},
 				{name: "active",
 					type: "text",
 					editorType: "selectItem",

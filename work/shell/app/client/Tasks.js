@@ -14,6 +14,13 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					detail: true
 				},
 				{
+					name: "taskDate",
+					title: "Date",
+					editorType: "DateItem",
+					validators: [{type: "isDate"}],
+					width: 120
+				},
+				{
 					name: "userID",
 					type: "text",
 					optionDataSource: isc.Shared.taskUsersDS,
@@ -21,7 +28,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					displayField: "userName",
 					valueField: "userID",
 					required: true,
-					width: 100,
+					width: 150,
 					includeInRecordSummary: false,
 					defaultValue: isc.userData.userID
 				},
@@ -36,6 +43,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					type: "integer",
 					showGridSummary: false,
 					optionDataSource: isc.Shared.taskCategoryDS,
+					optionCriteria: {status: 1},
 					displayField: "categoryName",
 					valueField: "categoryID",
 					required: true,
@@ -45,8 +53,9 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					name: "projectID",
 					type: "integer",
 					optionDataSource: isc.Shared.taskProjectsDS,
-					optionCriteria: {active: "Y"},
+					//optionCriteria: {active: "Y"},
 					displayField: "projectName",
+					optionCriteria: {status: 1},
 					valueField: "projectID",
 					required: true,
 					showGridSummary: false,
@@ -56,15 +65,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 						{name: "projectName", width: "*"}
 					],
 					width: 150
-				},
-				{
-					name: "taskDate",
-					title: "Date",
-					editorType: "DateItem",
-					validators: [{type: "isDate"}],
-					width: 120
-					// useTextField: true,
-					// defaultValue: new Date(),
 				},
 				{
 					name: "ticketCode",
@@ -88,11 +88,17 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			dataSource: this.TasksDS,
 			showFilterEditor: true,
 			showGridSummary: true,
+			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
+				this.startEditing(recordNum);
+			},
 			startEditingNew: function(newValues, suppressFocus){
 				var today = new Date();
 				var rowDefaults = {duration: .25, taskDate: today, userID: isc.userData.userID};
 				var newCriteria = isc.addProperties({}, newValues, rowDefaults);
 				return this.Super("startEditingNew", [newCriteria, suppressFocus]);
+			},
+			rowEditorEnter: function(record, editValues, rowNum){
+				this.focusInFilterEditor("taskCategoryID");
 			},
 			dataProperties: {
 				dataArrived: this.getID() + ".TasksLG.updateStatus()"
@@ -103,5 +109,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			callingListGrid: this.TasksLG
 		});
 		this.addItem(isc.myVLayout.create({members: [this.TasksLG]}));
+		this.TasksDS.fetchData({userID: isc.userData.userID});
 	}
 });

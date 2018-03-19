@@ -13,7 +13,8 @@ isc.Shared = {
 		]
 	}),
 	epicListDS: isc.myDataSource.create({
-		dataURL: serverPath + "Epics.php",
+		dataURL:
+		serverPath + "Epics.php",
 		fields:[
 			{name: "epicID", type: "sequence", primaryKey: true},
 			{name: "epicName", type: "text"}
@@ -23,14 +24,26 @@ isc.Shared = {
 		dataURL: serverPath + "Projects.php",
 		fields:[
 			{name: "projectID", type: "sequence", primaryKey: true},
-			{name: "projectName", type: "text"}
+			{name: "projectName", type: "text"},
+			{name: "active", type: "text"}
 		]
 	}),
 	taskCategoryDS: isc.myDataSource.create({
 		dataURL: serverPath + "TaskCategories.php",
 		fields:[
 			{name: "categoryID", type: "sequence", primaryKey: true},
-			{name: "categoryName", type: "text"}
+			{name: "categoryName", type: "text"},
+			{name: "status", type: "integer"},
+			{name: "active", type: "text"}
+		]
+	}),
+	taskProjectsDS: isc.myDataSource.create({
+		dataURL: serverPath + "TaskProjects.php",
+		fields:[
+			{name: "projectID", type: "sequence", primaryKey: true},
+			{name: "projectName", type: "text"},
+			{name: "projectCode", type: "text"},
+			{name: "status", type: "integer"}
 		]
 	}),
 	taskUsersDS: isc.myDataSource.create({
@@ -53,14 +66,6 @@ isc.Shared = {
 		fields:[
 			{name: "nameID", type: "sequence", primaryKey: true},
 			{name: "name", type: "text"}
-		]
-	}),
-	taskProjectsDS: isc.myDataSource.create({
-		dataURL: serverPath + "TaskProjects.php",
-		fields:[
-			{name: "projectID", type: "sequence", primaryKey: true},
-			{name: "projectName", type: "text"},
-			{name: "projectCode", type: "text"}
 		]
 	})
 };

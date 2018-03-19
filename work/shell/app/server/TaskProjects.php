@@ -17,6 +17,18 @@ $argsIN = array_merge($_POST,$_GET);
 $operationType = (isset($argsIN['operationType'])) ? $argsIN['operationType'] : null;
 switch($operationType){
 case 'fetch':
+	if(isset($argsIN['projectID'])) {
+		$projectID = ($argsIN['projectID'] > 0) ? $argsIN['projectID'] : NULL;
+	}else{
+		$projectID = 'NULL';
+	}
+	if(isset($argsIN['status'])) {
+		$status = ($argsIN['status'] > 0) ? $argsIN['status'] : NULL;
+	}else{
+		$status = 'NULL';
+	}
+	$argsIN['sql'] = "SELECT T.* FROM taskProjects T WHERE T.projectID = coalesce(:id,T.projectID) and T.status = coalesce($status, T.status) order by T.projectCode, T.projectName";
+	//echo '/*' . $argsIN['sql'] . '*/';
 	$response = $lclass->pdoFetch($argsIN);
 	break;
 case 'add':
