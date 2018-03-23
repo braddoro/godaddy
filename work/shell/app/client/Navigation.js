@@ -25,6 +25,7 @@ isc.defineClass("Navigation", "Menu").addProperties({
 			showShadow: true,
 			items: [
 				{title: "Tasks", click: "isc.Tasks.create({width: 1000, height: 600, top: 5, left: 25})"},
+				{title: "Work", click: "isc.Work.create({width: 300, height: 250, top: 5, left: 25})"},
 				{isSeparator: true},
 				{title: "To Do Items", click: "isc.Items.create({width: 800})"},
 				{title: "Misc Tables", submenu: this.MiscTables},

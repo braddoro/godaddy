@@ -56,6 +56,7 @@ $classes[] = "Users.js";
 $classes[] = "Login.js";
 $classes[] = "Names.js";
 $classes[] = "ShowQuote.js";
+$classes[] = "Work.js";
 $content = "";
 foreach($classes as $class) {
 	if(file_exists($client_path . $class)){

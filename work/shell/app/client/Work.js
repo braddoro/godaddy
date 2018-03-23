@@ -1,18 +1,12 @@
-isc.defineClass("Tasks", "myWindow").addProperties({
-	title: "Task Entry",
+isc.defineClass("Work", "myWindow").addProperties({
+	title: "Work",
+	left: isc.Math.random(150),
+	top: isc.Math.random(150),
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
-		this.TasksDS = isc.myDataSource.create({
-			parent: this,
+		this.WorkDS = isc.myDataSource.create({
 			dataURL: serverPath + "Tasks.php",
 			fields:[
-				{
-					name: "taskID",
-					primaryKey: true,
-					type: "sequence",
-					canEdit: false,
-					detail: true
-				},
 				{
 					name: "taskDate",
 					title: "Date",
@@ -31,12 +25,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					width: 150,
 					includeInRecordSummary: false,
 					defaultValue: isc.userData.userID
-				},
-				{
-					name: "duration",
-					type: "float",
-					required: true,
-					width: 75
 				},
 				{
 					name: "taskCategoryID",
@@ -58,7 +46,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					optionCriteria: {status: 1},
 					valueField: "projectID",
 					required: true,
-					showGridSummary: false,
 					pickListWidth: 250,
 					pickListProperties: {
 						showFilterEditor: true
@@ -70,6 +57,13 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					width: 150
 				},
 				{
+					name: "duration",
+					type: "float",
+					required: true,
+					width: 75,
+					defaultValue: 1
+				},
+				{
 					name: "ticketCode",
 					type: "text",
 					width: 100
@@ -78,40 +72,32 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					name: "description",
 					type: "text",
 					width: "*"
-				},
-				{
-					name: "lastChangeDate",
-					canEdit: false,
-					detail: true
 				}
 			]
 		});
-		this.TasksLG = isc.myListGrid2.create({
+		this.WorkDF = isc.myDynamicForm.create({
 			parent: this,
-			dataSource: this.TasksDS,
-			showFilterEditor: true,
-			showGridSummary: true,
-			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
-				this.startEditing(recordNum);
-			},
-			startEditingNew: function(newValues, suppressFocus){
-				var today = new Date();
-				var rowDefaults = {duration: .25, taskDate: today, userID: isc.userData.userID};
-				var newCriteria = isc.addProperties({}, newValues, rowDefaults);
-				return this.Super("startEditingNew", [newCriteria, suppressFocus]);
-			},
-			rowEditorEnter: function(record, editValues, rowNum){
-				this.focusInFilterEditor("taskCategoryID");
-			},
-			dataProperties: {
-				dataArrived: this.getID() + ".TasksLG.updateStatus()"
+			dataSource: this.WorkDS
+		});
+		this.WorkBT = isc.myIButton.create({
+			parent: this,
+			title: "Submit",
+			align: "center",
+			click: function(){
+				this.parent.submitData();
 			}
 		});
-		this.localContextMenu = isc.myContextMenu.create({
-			parent: this,
-			callingListGrid: this.TasksLG
-		});
-		this.addItem(isc.myVLayout.create({members: [this.TasksLG]}));
-		this.TasksDS.fetchData({userID: isc.userData.userID});
+		this.WorkVL = isc.myVLayout.create({members: [this.WorkDF, this.WorkBT]});
+		this.addItem(this.WorkVL);
+	},
+	submitData: function(){
+		var formData = this.WorkDF.getValues();
+		this.WorkDS.addData(formData,{target: this, methodName: "submitData_callback"});
+	},
+	submitData_callback: function(rpcResponse){
+		var responseData = rpcResponse.data[0];
+		if(responseData === undefined){} else {
+			this.WorkDF.clearValues();
+		}
 	}
 });
