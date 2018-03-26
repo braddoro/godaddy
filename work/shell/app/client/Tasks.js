@@ -1,5 +1,6 @@
 isc.defineClass("Tasks", "myWindow").addProperties({
 	title: "Task Entry",
+	currUserID: 0,
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.TasksDS = isc.myDataSource.create({
@@ -91,12 +92,13 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			dataSource: this.TasksDS,
 			showFilterEditor: true,
 			showGridSummary: true,
+			//filterLocalData: true,
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
 				this.startEditing(recordNum);
 			},
 			startEditingNew: function(newValues, suppressFocus){
 				var today = new Date();
-				var rowDefaults = {duration: .25, taskDate: today, userID: isc.userData.userID};
+				var rowDefaults = {duration: .25, taskDate: today, userID: this.currUserID};
 				var newCriteria = isc.addProperties({}, newValues, rowDefaults);
 				return this.Super("startEditingNew", [newCriteria, suppressFocus]);
 			},
@@ -112,6 +114,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			callingListGrid: this.TasksLG
 		});
 		this.addItem(isc.myVLayout.create({members: [this.TasksLG]}));
-		this.TasksDS.fetchData({userID: isc.userData.userID});
+		this.TasksDS.filterData({userID: this.currUserID});
 	}
 });

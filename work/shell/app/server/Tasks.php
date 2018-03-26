@@ -17,11 +17,16 @@ $argsIN = array_merge($_POST,$_GET);
 $operationType = (isset($argsIN['operationType'])) ? $argsIN['operationType'] : null;
 switch($operationType){
 case 'fetch':
-	// if(isset($argsIN['taskID'])) {
-	// 	$taskID = ($argsIN['taskID'] > 0) ? $argsIN['taskID'] : NULL;
-	// }else{
-	// 	$taskID = 'NULL';
-	// }
+	if(isset($argsIN['taskID'])) {
+		$taskID = ($argsIN['taskID'] > 0) ? $argsIN['taskID'] : NULL;
+	}else{
+		$taskID = 'NULL';
+	}
+	if(isset($argsIN['userID'])) {
+		$userID = ($argsIN['userID'] > 0) ? $argsIN['userID'] : NULL;
+	}else{
+		$userID = 'NULL';
+	}
 	// $taskDate = NULL;
 	// if(isset($argsIN['taskDate'])){
 	// 	$argsIN['taskDate'] = date_create()->format('Y-m-d');

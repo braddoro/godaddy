@@ -87,7 +87,31 @@ isc.defineClass("Work", "myWindow").addProperties({
 				this.parent.submitData();
 			}
 		});
-		this.WorkVL = isc.myVLayout.create({members: [this.WorkDF, this.WorkBT]});
+		this.AddedLG = isc.myListGrid.create({
+			parent: this,
+			canEdit: false,
+			canSort: false,
+			fields: [
+				{name: "taskID", detail: true},
+				{name: "duration"},
+				{
+					name: "taskCategoryID",
+					optionDataSource: isc.Shared.taskCategoryDS,
+					optionCriteria: {status: 1},
+					displayField: "categoryName",
+					valueField: "categoryID"
+				},
+				{
+					name: "projectID",
+					optionDataSource: isc.Shared.taskProjectsDS,
+					displayField: "projectName",
+					optionCriteria: {status: 1},
+					valueField: "projectID"
+				},
+				{name: "taskDate"}
+			]
+		});
+		this.WorkVL = isc.myVLayout.create({members: [this.WorkDF, this.WorkBT, this.AddedLG]});
 		this.addItem(this.WorkVL);
 	},
 	submitData: function(){
@@ -97,6 +121,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 	submitData_callback: function(rpcResponse){
 		var responseData = rpcResponse.data[0];
 		if(responseData === undefined){} else {
+			this.AddedLG.addData(responseData);
 			this.WorkDF.clearValues();
 		}
 	}
