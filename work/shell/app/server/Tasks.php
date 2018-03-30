@@ -27,12 +27,33 @@ case 'fetch':
 	}else{
 		$userID = 'NULL';
 	}
-	// $taskDate = NULL;
-	// if(isset($argsIN['taskDate'])){
-	// 	$argsIN['taskDate'] = date_create()->format('Y-m-d');
-	// 	$taskDate = $argsIN['taskDate'];
-	// }
-	// $argsIN['sql'] = "SELECT T.* FROM tasks T WHERE T.taskID = coalesce(:id,T.taskID) and T.taskDate >= coalesce('$taskDate',T.taskDate)";
+	if(isset($argsIN['taskCategoryID'])) {
+		$taskCategoryID = ($argsIN['taskCategoryID'] > 0) ? $argsIN['taskCategoryID'] : NULL;
+	}else{
+		$taskCategoryID = 'NULL';
+	}
+	if(isset($argsIN['projectID'])) {
+		$projectID = ($argsIN['projectID'] > 0) ? $argsIN['projectID'] : NULL;
+	}else{
+		$projectID = 'NULL';
+	}
+	if(isset($argsIN['taskDate'])) {
+		$taskDate = $argsIN['taskDate'];
+	}else{
+		$taskDate = 'NULL';
+	}
+	$argsIN['sql'] = "
+	select *
+	from
+		tasks t
+	where
+		t.taskID = coalesce(:id, t.taskID)
+		and t.userID = coalesce($userID, t.userID)
+		and t.taskDate = coalesce('$taskDate', t.taskDate)
+		and t.taskCategoryID = coalesce($taskCategoryID, t.taskCategoryID)
+		and t.projectID = coalesce($projectID, t.projectID)
+	";
+	//echo($argsIN['sql']);
 	$response = $lclass->pdoFetch($argsIN);
 	break;
 case 'add':

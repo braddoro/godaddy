@@ -6,16 +6,24 @@ isc.defineClass("Work", "myWindow").addProperties({
 		this.Super("initWidget", arguments);
 		this.WorkDS = isc.myDataSource.create({
 			dataURL: serverPath + "Tasks.php",
+			autoFetchData: false,
 			fields:[
-				{
-					name: "taskDate",
+				{name: "taskDate",
 					title: "Date",
 					editorType: "DateItem",
 					validators: [{type: "isDate"}],
-					width: 120
+					width: 120,
+					changed: function(form, item, value){
+						// console.log(value);
+						// var today = new Date();
+						// var newdate = value;
+						// if(value == '') {
+						// 	newdate = today;
+						// }
+						form.parent.TasksLG.fetchData();
+					}
 				},
-				{
-					name: "userID",
+				{name: "userID",
 					type: "text",
 					optionDataSource: isc.Shared.taskUsersDS,
 					optionCriteria: {active: "Y"},
@@ -26,19 +34,18 @@ isc.defineClass("Work", "myWindow").addProperties({
 					includeInRecordSummary: false,
 					defaultValue: isc.userData.userID
 				},
-				{
-					name: "taskCategoryID",
+				{name: "taskCategoryID",
 					type: "integer",
 					showGridSummary: false,
 					optionDataSource: isc.Shared.taskCategoryDS,
 					optionCriteria: {status: 1},
 					displayField: "categoryName",
 					valueField: "categoryID",
+					title: "Category ID",
 					required: true,
 					width: 120
 				},
-				{
-					name: "projectID",
+				{name: "projectID",
 					type: "integer",
 					optionDataSource: isc.Shared.taskProjectsDS,
 					//optionCriteria: {active: "Y"},
@@ -47,32 +54,39 @@ isc.defineClass("Work", "myWindow").addProperties({
 					valueField: "projectID",
 					required: true,
 					pickListWidth: 250,
-					pickListProperties: {
-						showFilterEditor: true
-					},
-					pickListFields: [
-						{name: "projectCode", width: 75},
-						{name: "projectName", width: "*"}
-					],
+					pickListProperties: {showFilterEditor: true},
+					pickListFields: [{name: "projectCode", width: 75}, {name: "projectName", width: "*"}],
 					width: 150
 				},
-				{
-					name: "duration",
-					type: "float",
-					required: true,
-					width: 75,
-					defaultValue: 1
+				{name: "duration",  type: "float", required: true, width: 75, defaultValue: 1},
+				{name: "ticketCode", type: "text", width: 100},
+				{name: "description", type: "text", width: "*"},
+				{name: "lastChangeDate", visible: false}
+			]
+		});
+		this.TasksDS = isc.myDataSource.create({
+			dataURL: serverPath + "Tasks.php",
+			autoFetchData: true,
+			fields:[
+				{name: "taskID", detail: true},
+				{name: "duration", type: "float", title: "Time", width: 50},
+				{name: "taskCategoryID",
+					title: "Category",
+					optionDataSource: isc.Shared.taskCategoryDS,
+					optionCriteria: {status: 1},
+					displayField: "categoryName",
+					valueField: "categoryID",
+					width: 75
 				},
-				{
-					name: "ticketCode",
-					type: "text",
-					width: 100
-				},
-				{
-					name: "description",
-					type: "text",
+				{name: "projectID",
+					title: "Project",
+					optionDataSource: isc.Shared.taskProjectsDS,
+					displayField: "projectName",
+					optionCriteria: {status: 1},
+					valueField: "projectID",
 					width: "*"
-				}
+				},
+				{name: "ticketCode", title: "Ticket", width: 75}
 			]
 		});
 		this.WorkDF = isc.myDynamicForm.create({
@@ -83,46 +97,39 @@ isc.defineClass("Work", "myWindow").addProperties({
 			parent: this,
 			title: "Submit",
 			align: "center",
-			click: function(){
-				this.parent.submitData();
-			}
+			click: function(){this.parent.submitData();}
 		});
-		this.AddedLG = isc.myListGrid.create({
+		this.TasksLG = isc.myListGrid2.create({
 			parent: this,
+			dataSource: this.TasksDS,
 			canEdit: false,
 			canSort: false,
-			fields: [
-				{name: "taskID", detail: true},
-				{name: "duration"},
-				{
-					name: "taskCategoryID",
-					optionDataSource: isc.Shared.taskCategoryDS,
-					optionCriteria: {status: 1},
-					displayField: "categoryName",
-					valueField: "categoryID"
-				},
-				{
-					name: "projectID",
-					optionDataSource: isc.Shared.taskProjectsDS,
-					displayField: "projectName",
-					optionCriteria: {status: 1},
-					valueField: "projectID"
-				},
-				{name: "taskDate"}
-			]
+			showGridSummary: true,
+			fetchData: function(criteria, callback, requestProperties){
+				var today = this.parent.WorkDF.getValue("taskDate");
+				var newValues = {userID: isc.userData.userID, taskDate: today};
+				var newCriteria = isc.addProperties({}, criteria, newValues);
+				return this.Super("fetchData", [newCriteria, callback, requestProperties]);
+			}
 		});
-		this.WorkVL = isc.myVLayout.create({members: [this.WorkDF, this.WorkBT, this.AddedLG]});
+		this.localContextMenu = isc.myContextMenu.create({
+			parent: this,
+			callingListGrid: this.TasksLG
+		});
+		this.WorkVL = isc.myVLayout.create({members: [this.WorkDF, this.WorkBT, this.TasksLG]});
 		this.addItem(this.WorkVL);
 	},
 	submitData: function(){
 		var formData = this.WorkDF.getValues();
-		this.WorkDS.addData(formData,{target: this, methodName: "submitData_callback"});
+		this.WorkDS.addData(formData, {target: this, methodName: "submitData_callback"});
 	},
 	submitData_callback: function(rpcResponse){
-		var responseData = rpcResponse.data[0];
-		if(responseData === undefined){} else {
-			this.AddedLG.addData(responseData);
-			this.WorkDF.clearValues();
-		}
+		this.TasksLG.fetchData();
+		this.TasksLG.refreshData();
+		this.WorkDF.setValue("ticketCode","");
+		this.WorkDF.setValue("description","");
+		this.WorkDF.setValue("taskCategoryID","");
+		this.WorkDF.setValue("projectID","");
+		this.WorkDF.setValue("duration",1);
 	}
 });

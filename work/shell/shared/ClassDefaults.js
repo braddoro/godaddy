@@ -13,7 +13,10 @@ isc.defineClass("myWindow", "Window").addProperties({
 	height: "40%",
 	width: "60%",
 	left: 25,
-	top: 25
+	top: 25,
+	resized: function(){
+		//console.log("height: " + this.height  + "\n" + "width: " + this.width  + "\n" + "left: " + this.left  + "\n" + "top: " + this.top + "\n");
+	}
 });
 isc.defineClass("myVLayout", "VLayout").addProperties({
 	height: "100%"

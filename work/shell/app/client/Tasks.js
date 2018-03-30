@@ -92,7 +92,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			dataSource: this.TasksDS,
 			showFilterEditor: true,
 			showGridSummary: true,
-			//filterLocalData: true,
+			autoFetchData: false,
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
 				this.startEditing(recordNum);
 			},
