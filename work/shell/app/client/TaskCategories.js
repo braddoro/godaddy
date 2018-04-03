@@ -4,21 +4,9 @@ isc.defineClass("TaskCategories", "myWindow").addProperties({
 	top: isc.Math.random(150),
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
-		this.TaskCategoriesDS = isc.myDataSource.create({
-			dataURL: serverPath + "TaskCategories.php",
-			initialSort: ["displayOrder"],
-			//sortField: 1,
-			fields:[
-				{name: "categoryID", primaryKey: true, type: "sequence", detail: true, canEdit: false},
-				{name: "displayOrder", type: "integer", width: 100},
-				{name: "categoryName", type: "text", width: "*"},
-				{name: "active", type: "text", editorType: "selectItem", defaultValue: "Y", valueMap: {"Y" : "Yes", "N" : "No"}, width: 80},
-				{name: "lastChangeDate", width: 120, canEdit: false}
-			]
-		});
 		this.TaskCategoriesLG = isc.myListGrid2.create({
 			parent: this,
-			dataSource: this.TaskCategoriesDS
+			dataSource: isc.Shared.taskCategoriesDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,

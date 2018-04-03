@@ -5,7 +5,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.WorkDS = isc.myDataSource.create({
-			dataURL: serverPath + "Tasks.php",
+			dataURL: serverPath + "Work.php",
 			autoFetchData: false,
 			fields:[
 				{name: "taskDate",
@@ -65,7 +65,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 			]
 		});
 		this.TasksDS = isc.myDataSource.create({
-			dataURL: serverPath + "Tasks.php",
+			dataURL: serverPath + "Work.php",
 			autoFetchData: true,
 			fields:[
 				{name: "taskID", detail: true},

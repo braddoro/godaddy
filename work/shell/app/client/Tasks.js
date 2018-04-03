@@ -1,5 +1,5 @@
 isc.defineClass("Tasks", "myWindow").addProperties({
-	title: "Task Entry",
+	title: "Task List",
 	currUserID: 0,
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
@@ -7,22 +7,19 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			parent: this,
 			dataURL: serverPath + "Tasks.php",
 			fields:[
-				{
-					name: "taskID",
+				{name: "taskID",
 					primaryKey: true,
 					type: "sequence",
 					canEdit: false,
 					detail: true
 				},
-				{
-					name: "taskDate",
+				{name: "taskDate",
 					title: "Date",
 					editorType: "DateItem",
 					validators: [{type: "isDate"}],
 					width: 120
 				},
-				{
-					name: "userID",
+				{name: "userID",
 					type: "text",
 					optionDataSource: isc.Shared.taskUsersDS,
 					optionCriteria: {active: "Y"},
@@ -33,28 +30,25 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					includeInRecordSummary: false,
 					defaultValue: isc.userData.userID
 				},
-				{
-					name: "duration",
+				{name: "duration",
 					type: "float",
 					required: true,
 					width: 75
 				},
-				{
-					name: "taskCategoryID",
+				{name: "taskCategoryID",
 					type: "integer",
 					showGridSummary: false,
 					optionDataSource: isc.Shared.taskCategoryDS,
-					optionCriteria: {status: 1},
+					optionCriteria: {active: "Y"},
 					displayField: "categoryName",
 					valueField: "categoryID",
 					required: true,
 					width: 120
 				},
-				{
-					name: "projectID",
+				{name: "projectID",
 					type: "integer",
 					optionDataSource: isc.Shared.taskProjectsDS,
-					//optionCriteria: {active: "Y"},
+					optionCriteria: {active: "Y"},
 					displayField: "projectName",
 					optionCriteria: {status: 1},
 					valueField: "projectID",
@@ -70,18 +64,15 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					],
 					width: 150
 				},
-				{
-					name: "ticketCode",
+				{name: "ticketCode",
 					type: "text",
 					width: 100
 				},
-				{
-					name: "description",
+				{name: "description",
 					type: "text",
 					width: "*"
 				},
-				{
-					name: "lastChangeDate",
+				{name: "lastChangeDate",
 					canEdit: false,
 					detail: true
 				}
@@ -92,7 +83,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			dataSource: this.TasksDS,
 			showFilterEditor: true,
 			showGridSummary: true,
-			autoFetchData: false,
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
 				this.startEditing(recordNum);
 			},
