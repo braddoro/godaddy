@@ -164,7 +164,7 @@ class DataModel extends Server {
 		return $return;
 	}
 	function pdoExecute($sql, $binding, $operationType, $pkID = NULL){
-		echo("/*" . $sql . "*/");
+		// echo("/*" . $sql . "*/");
 		if(!$this->conn){
 		 	$return['status'] = -111;
 		 	$return['errorMessage'] = 'No connection.';
