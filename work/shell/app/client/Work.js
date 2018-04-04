@@ -101,6 +101,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 			parent: this,
 			name: "Work",
 			dataSource: this.TasksDS,
+			showFilterEditor: false,
 			canEdit: false,
 			canSort: false,
 			fetchData: function(criteria, callback, requestProperties){
