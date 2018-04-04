@@ -99,6 +99,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 		});
 		this.TasksLG = isc.myListGrid2.create({
 			parent: this,
+			name: "Work",
 			dataSource: this.TasksDS,
 			canEdit: false,
 			canSort: false,

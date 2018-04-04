@@ -94,9 +94,11 @@ isc.defineClass("myListGrid2", "ListGrid").addProperties({
 		this.startEditing(recordNum);
 	},
 	updateStatus: function() {
-		var statusText = this.getTotalRows() + " Rows";
-		this.parent.setTitle("Rows - " + statusText);
+		this.parent.setTitle(this.name + " : Rows - " + this.getTotalRows());
 		this.focus();
+	},
+	dataArrived: function(){
+		this.updateStatus();
 	}
 });
 

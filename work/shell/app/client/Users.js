@@ -6,6 +6,7 @@ isc.defineClass("Users", "myWindow").addProperties({
 		this.Super("initWidget", arguments);
 		this.UsersLG = isc.myListGrid2.create({
 			parent: this,
+			name: "Users",
 			dataSource: isc.Shared.taskUsersDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({

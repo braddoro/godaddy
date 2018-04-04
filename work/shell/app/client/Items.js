@@ -41,6 +41,7 @@ isc.defineClass("Items", "myWindow").addProperties({
 		});
 		this.ItemsLG = isc.myListGrid2.create({
 			parent: this,
+			name: "Items",
 			dataSource: this.ItemsDS,
 			rowContextClick: function(record, rowNum, colNum){
 				this.parent.localContextMenu.showContextMenu();

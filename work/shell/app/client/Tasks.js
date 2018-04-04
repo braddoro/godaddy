@@ -50,7 +50,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					optionDataSource: isc.Shared.taskProjectsDS,
 					optionCriteria: {active: "Y"},
 					displayField: "projectName",
-					optionCriteria: {status: 1},
 					valueField: "projectID",
 					required: true,
 					showGridSummary: false,
@@ -80,6 +79,7 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 		});
 		this.TasksLG = isc.myListGrid2.create({
 			parent: this,
+			name: "Tasks",
 			dataSource: this.TasksDS,
 			showGridSummary: true,
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
@@ -93,9 +93,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 			},
 			rowEditorEnter: function(record, editValues, rowNum){
 				this.focusInFilterEditor("taskCategoryID");
-			},
-			dataProperties: {
-				dataArrived: this.getID() + ".TasksLG.updateStatus()"
 			}
 		});
 		this.localContextMenu = isc.myContextMenu.create({

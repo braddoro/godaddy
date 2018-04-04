@@ -40,35 +40,15 @@ isc.defineClass("BrewLog", "myWindow").addProperties({
 		});
 		this.BrewLogLG = isc.myListGrid2.create({
 			parent: this,
+			name: "Logs",
 			dataSource: this.BrewLogDS,
-			rowContextClick: function(record, rowNum, colNum){
-				// var previewMenu = isc.myMenu.create({
-				// 	items: [
-				// 		{title: "Preview", click: "isc.Preview.create({width: \"50%\", height: \"95%\", initData.record"+ record +"})"}
-				// 	]
-				// });
-		        //this.parent.localContextMenu.addMembers([{title: "Preview", click: "isc.Preview.create({width: \"50%\", height: \"95%\", initData.record"+ record +"})"}]);
-				this.parent.localContextMenu.showContextMenu();
-				return false;
-			},
- 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
- 				this.startEditing(recordNum);
- 			},
  			startEditingNew: function(newValues, suppressFocus){
 				var now = new Date();
 				var today = now.toSerializeableDate();
 				var defaults = {brewDate: today, userID: isc.userData.userID, mashTemp: 152, mashRatio: 1.5, mashTime: 60, boilTime: 60, yeastStarter: "N"};
 				var moreCriteria = isc.addProperties({}, newValues, defaults);
  				return this.Super("startEditingNew", [moreCriteria, suppressFocus]);
- 			},
-			updateStatus: function(){
-				var statusText = this.getTotalRows() + " Rows";
-				this.parent.setTitle("Brew Log - " + statusText);
-				this.focus();
-			},
-			dataProperties: {
-				dataArrived: this.getID() + ".BrewLogLG.updateStatus()"
-			}
+ 			}
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,

@@ -14,6 +14,7 @@ isc.defineClass("Threads", "myWindow").addProperties({
 		});
 		this.ThreadsLG = isc.myListGrid2.create({
 			parent: this,
+			name: "Threads",
 			dataSource: this.ThreadsDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({

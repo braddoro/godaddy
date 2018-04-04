@@ -14,6 +14,7 @@ isc.defineClass("Quotes", "myWindow").addProperties({
 		});
 		this.QuotesLG = isc.myListGrid2.create({
 			parent: this,
+			name: "Quotes",
 			dataSource: this.QuotesDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({
