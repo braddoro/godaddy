@@ -80,20 +80,10 @@ isc.defineClass("myDataSource", "DataSource").addProperties({
 	}
 });
 
-isc.defineClass("myListGrid", "ListGrid").addProperties({
-	alternateRecordStyles: true,
-	leaveScrollbarGap: false,
-	showFilterEditor: false,
-	showAllRecords: true,
-	autoFetchData: true,
-	modalEditing: true
-});
-
 isc.defineClass("myListGrid2", "ListGrid").addProperties({
 	alternateRecordStyles: true,
 	leaveScrollbarGap: false,
 	showFilterEditor: true,
-	//showAllRecords: true,
 	autoFetchData: true,
 	modalEditing: true,
 	rowContextClick: function(record, rowNum, colNum){

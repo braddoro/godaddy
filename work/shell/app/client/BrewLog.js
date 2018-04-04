@@ -38,7 +38,7 @@ isc.defineClass("BrewLog", "myWindow").addProperties({
 				{name: "lastChangeDate", canEdit: false, detail: true}
 			]
 		});
-		this.BrewLogLG = isc.myListGrid.create({
+		this.BrewLogLG = isc.myListGrid2.create({
 			parent: this,
 			dataSource: this.BrewLogDS,
 			rowContextClick: function(record, rowNum, colNum){

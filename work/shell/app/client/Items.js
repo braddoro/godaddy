@@ -39,7 +39,7 @@ isc.defineClass("Items", "myWindow").addProperties({
 				{name: "lastChangeDate", canEdit: false, detail: true}
 			]
 		});
-		this.ItemsLG = isc.myListGrid.create({
+		this.ItemsLG = isc.myListGrid2.create({
 			parent: this,
 			dataSource: this.ItemsDS,
 			rowContextClick: function(record, rowNum, colNum){

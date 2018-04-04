@@ -35,9 +35,8 @@ isc.defineClass("UserStories", "myWindow").addProperties({
 				{name: "lastChangeDate", width: 120, canEdit: false}
 			]
 		});
-		this.UserStoriesLG = isc.myListGrid.create({
+		this.UserStoriesLG = isc.myListGrid2.create({
 			parent: this,
-			showFilterEditor: true,
 			dataSource: this.UserStoriesDS,
 			rowContextClick: function(record, rowNum, colNum){
 				this.parent.localContextMenu.showContextMenu();

@@ -24,7 +24,7 @@ isc.Shared = {
 	taskCategoryDS: isc.myDataSource.create({
 		dataURL: serverPath + "TaskCategories.php",
 		fields:[
-			{name: "categoryID", primaryKey: true, type: "sequence", detail: true, canEdit: false},
+			{name: "categoryID", primaryKey: true, type: "sequence", detail: true, canEdit: false, width: 75},
 			{name: "displayOrder", type: "integer", width: 100},
 			{name: "categoryName", type: "text", width: "*"},
 			{name: "active", type: "text", width: 100, editorType: "selectItem", defaultValue: "Y", valueMap: {"Y" : "Yes", "N" : "No"}, width: 80},
@@ -34,7 +34,7 @@ isc.Shared = {
 	taskProjectsDS: isc.myDataSource.create({
 		dataURL: serverPath + "TaskProjects.php",
 		fields:[
-			{name: "projectID", type: "sequence", primaryKey: true},
+			{name: "projectID", type: "sequence", primaryKey: true, detail: true, canEdit: false, width: 75},
 			{name: "projectName", type: "text"},
 			{name: "projectCode", type: "text"},
 			{name: "active", type: "text", width: 100, editorType: "selectItem", defaultValue: "Y", valueMap: {"Y": "Yes", "N": "No"}, width: 80},
@@ -44,7 +44,7 @@ isc.Shared = {
 	taskUsersDS: isc.myDataSource.create({
 		dataURL: serverPath + "Users.php",
 		fields:[
-			{name: "userID", primaryKey: true, type: "sequence", canEdit: false, detail: true},
+			{name: "userID", primaryKey: true, type: "sequence", canEdit: false, detail: true, width: 75},
 			{name: "userName", type: "text", width: "*"},
 			{name: "firstName", type: "text", width: 80},
 			{name: "lastName", type: "text", width: 80},
