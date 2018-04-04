@@ -81,7 +81,6 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 		this.TasksLG = isc.myListGrid2.create({
 			parent: this,
 			dataSource: this.TasksDS,
-			showFilterEditor: true,
 			showGridSummary: true,
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
 				this.startEditing(recordNum);

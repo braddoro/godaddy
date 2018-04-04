@@ -15,11 +15,7 @@ isc.defineClass("Navigation", "Menu").addProperties({
 				{title: "Projects", click: "isc.TaskProjects.create({width: 800, height: 300})"},
 				{title: "Categories", click: "isc.TaskCategories.create({width: 500, height: 300})"},
 				{title: "Statuses", click: "isc.Statuses.create({width: 500, height: 300})"},
-				{title: "Users", click: "isc.Users.create({width: 600, height: 300})"},
-				{isSeparator: true},
-				{title: "Names", enabled: false, click: "isc.Names.create({width: 600, height: 300})"},
-				{title: "Roles", enabled: false, click: "isc.Roles.create({width: 200, height: 300})"},
-				{title: "User Roles", enabled: false, click: "isc.UserRoles.create({width: 200, height: 300})"}
+				{title: "Users", click: "isc.Users.create({width: 600, height: 300})"}
 			]
 		});
 		this.mainMenu = isc.myMenu.create({

@@ -6,7 +6,6 @@ isc.defineClass("Statuses", "myWindow").addProperties({
 		this.Super("initWidget", arguments);
 		this.StatusLG = isc.myListGrid2.create({
 			parent: this,
-			showFilterEditor: true,
 			dataSource: isc.Shared.statusDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({

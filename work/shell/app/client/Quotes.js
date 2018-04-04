@@ -12,25 +12,9 @@ isc.defineClass("Quotes", "myWindow").addProperties({
 				{name: "lastChangeDate", canEdit: false, detail: true}
 			]
 		});
-		this.QuotesLG = isc.myListGrid.create({
+		this.QuotesLG = isc.myListGrid2.create({
 			parent: this,
-			showFilterEditor: true,
-			dataSource: this.QuotesDS,
-			rowContextClick: function(record, rowNum, colNum){
-				this.parent.localContextMenu.showContextMenu();
-				return false;
-			},
-			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
-				this.startEditing(recordNum);
-			},
-			updateStatus: function() {
-				var statusText = this.getTotalRows() + " Rows";
-				this.parent.setTitle("Quotes - " + statusText);
-				this.focus();
-			},
-			dataProperties: {
-				dataArrived: this.getID() + ".QuotesLG.updateStatus()"
-			}
+			dataSource: this.QuotesDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,

@@ -92,8 +92,8 @@ isc.defineClass("myListGrid", "ListGrid").addProperties({
 isc.defineClass("myListGrid2", "ListGrid").addProperties({
 	alternateRecordStyles: true,
 	leaveScrollbarGap: false,
-	showFilterEditor: false,
-	showAllRecords: true,
+	showFilterEditor: true,
+	//showAllRecords: true,
 	autoFetchData: true,
 	modalEditing: true,
 	rowContextClick: function(record, rowNum, colNum){

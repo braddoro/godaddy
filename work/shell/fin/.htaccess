@@ -1,8 +1,0 @@
-
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^shell\.untrust3d\.com$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.shell\.untrust3d\.com$
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule ^/?$ "http\:\/\/untrust3d\.com\/work\/shell\/app\/index_misc\.php" [R=301,L]
-

@@ -6,7 +6,6 @@ isc.defineClass("TaskProjects", "myWindow").addProperties({
 		this.Super("initWidget", arguments);
 		this.TaskProjectsLG = isc.myListGrid2.create({
 			parent: this,
-			showFilterEditor: true,
 			dataSource: isc.Shared.taskProjectsDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({

@@ -12,25 +12,9 @@ isc.defineClass("Threads", "myWindow").addProperties({
 				{name: "lastChangeDate", canEdit: false, detail: true}
 			]
 		});
-		this.ThreadsLG = isc.myListGrid.create({
+		this.ThreadsLG = isc.myListGrid2.create({
 			parent: this,
-			showFilterEditor: true,
-			dataSource: this.ThreadsDS,
-			rowContextClick: function(record, rowNum, colNum){
-				this.parent.localContextMenu.showContextMenu();
-				return false;
-			},
-			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
-				this.startEditing(recordNum);
-			},
-			updateStatus: function() {
-				var statusText = this.getTotalRows() + " Rows";
-				this.parent.setTitle("Rows - " + statusText);
-				this.focus();
-			},
-			dataProperties: {
-				dataArrived: this.getID() + ".ThreadsLG.updateStatus()"
-			}
+			dataSource: this.ThreadsDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,

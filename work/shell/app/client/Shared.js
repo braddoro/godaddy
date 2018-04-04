@@ -17,7 +17,8 @@ isc.Shared = {
 		fields:[
 			{name: "statusID", primaryKey: true, type: "sequence", canEdit: false, width: 75},
 			{name: "status", type: "text", width: "*"},
-			{name: "active", type: "text", editorType: "selectItem", defaultValue: "Y", valueMap: {"Y" : "Yes", "N" : "No"}, width: 80},
+			{name: "active", type: "text", width: 100, editorType: "selectItem", defaultValue: "Y", valueMap: {"Y" : "Yes", "N" : "No"}, width: 80},
+			{name: "lastChangeDate", width: 120, canEdit: false}
 		]
 	}),
 	taskCategoryDS: isc.myDataSource.create({
@@ -26,7 +27,7 @@ isc.Shared = {
 			{name: "categoryID", primaryKey: true, type: "sequence", detail: true, canEdit: false},
 			{name: "displayOrder", type: "integer", width: 100},
 			{name: "categoryName", type: "text", width: "*"},
-			{name: "active", type: "text", editorType: "selectItem", defaultValue: "Y", valueMap: {"Y" : "Yes", "N" : "No"}, width: 80},
+			{name: "active", type: "text", width: 100, editorType: "selectItem", defaultValue: "Y", valueMap: {"Y" : "Yes", "N" : "No"}, width: 80},
 			{name: "lastChangeDate", width: 120, canEdit: false}
 		]
 	}),
@@ -36,30 +37,21 @@ isc.Shared = {
 			{name: "projectID", type: "sequence", primaryKey: true},
 			{name: "projectName", type: "text"},
 			{name: "projectCode", type: "text"},
-			{name: "active", type: "text", editorType: "selectItem", defaultValue: "Y", valueMap: {"Y": "Yes", "N": "No"}, width: 80},
+			{name: "active", type: "text", width: 100, editorType: "selectItem", defaultValue: "Y", valueMap: {"Y": "Yes", "N": "No"}, width: 80},
 			{name: "lastChangeDate", width: 120, canEdit: false, detail: true}
 		]
 	}),
 	taskUsersDS: isc.myDataSource.create({
 		dataURL: serverPath + "Users.php",
 		fields:[
-			{name: "userID", type: "sequence", primaryKey: true},
-			{name: "userName", type: "text"},
-			{name: "active", type: "text"}
-		]
-	}),
-	rolesDS: isc.myDataSource.create({
-		dataURL: serverPath + "Roles.php",
-		fields:[
-			{name: "roleID", type: "sequence", primaryKey: true},
-			{name: "role", type: "text"}
-		]
-	}),
-	namesDS: isc.myDataSource.create({
-		dataURL: serverPath + "Names.php",
-		fields:[
-			{name: "nameID", type: "sequence", primaryKey: true},
-			{name: "name", type: "text"}
+			{name: "userID", primaryKey: true, type: "sequence", canEdit: false, detail: true},
+			{name: "userName", type: "text", width: "*"},
+			{name: "firstName", type: "text", width: 80},
+			{name: "lastName", type: "text", width: 80},
+			{name: "login", type: "text", width: 80},
+			{name: "password", type: "text", width: 80},
+			{name: "active", type: "text", width: 100, editorType: "selectItem", defaultValue: "Y", valueMap: {"Y" : "Yes", "N" : "No"}, width: 80},
+			{name: "lastChangeDate", canEdit: false, detail: true}
 		]
 	})
 };

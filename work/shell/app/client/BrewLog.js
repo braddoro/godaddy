@@ -40,7 +40,6 @@ isc.defineClass("BrewLog", "myWindow").addProperties({
 		});
 		this.BrewLogLG = isc.myListGrid.create({
 			parent: this,
-			showFilterEditor: true,
 			dataSource: this.BrewLogDS,
 			rowContextClick: function(record, rowNum, colNum){
 				// var previewMenu = isc.myMenu.create({

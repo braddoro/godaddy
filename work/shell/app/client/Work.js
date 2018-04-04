@@ -6,7 +6,6 @@ isc.defineClass("Work", "myWindow").addProperties({
 		this.Super("initWidget", arguments);
 		this.WorkDS = isc.myDataSource.create({
 			dataURL: serverPath + "Work.php",
-			autoFetchData: false,
 			fields:[
 				{name: "taskDate",
 					title: "Date",
@@ -66,7 +65,6 @@ isc.defineClass("Work", "myWindow").addProperties({
 		});
 		this.TasksDS = isc.myDataSource.create({
 			dataURL: serverPath + "Work.php",
-			autoFetchData: true,
 			fields:[
 				{name: "taskID", detail: true},
 				{name: "duration", type: "float", title: "Time", width: 50},
@@ -104,7 +102,6 @@ isc.defineClass("Work", "myWindow").addProperties({
 			dataSource: this.TasksDS,
 			canEdit: false,
 			canSort: false,
-			showGridSummary: true,
 			fetchData: function(criteria, callback, requestProperties){
 				var today = this.parent.WorkDF.getValue("taskDate");
 				var newValues = {userID: isc.userData.userID, taskDate: today};

@@ -54,7 +54,6 @@ $classes[] = "Quotes.js";
 $classes[] = "Threads.js";
 $classes[] = "Users.js";
 $classes[] = "Login.js";
-$classes[] = "Names.js";
 $classes[] = "ShowQuote.js";
 $classes[] = "Statuses.js";
 $classes[] = "Work.js";
