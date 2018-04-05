@@ -13,12 +13,6 @@ isc.defineClass("Work", "myWindow").addProperties({
 					validators: [{type: "isDate"}],
 					width: 120,
 					changed: function(form, item, value){
-						// console.log(value);
-						// var today = new Date();
-						// var newdate = value;
-						// if(value == '') {
-						// 	newdate = today;
-						// }
 						form.parent.TasksLG.fetchData();
 					}
 				},
@@ -37,7 +31,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 					type: "integer",
 					showGridSummary: false,
 					optionDataSource: isc.Shared.taskCategoryDS,
-					optionCriteria: {status: 1},
+					optionCriteria: {active: "Y"},
 					displayField: "categoryName",
 					valueField: "categoryID",
 					title: "Category ID",
@@ -47,9 +41,8 @@ isc.defineClass("Work", "myWindow").addProperties({
 				{name: "projectID",
 					type: "integer",
 					optionDataSource: isc.Shared.taskProjectsDS,
-					//optionCriteria: {active: "Y"},
+					optionCriteria: {active: "Y"},
 					displayField: "projectName",
-					optionCriteria: {status: 1},
 					valueField: "projectID",
 					required: true,
 					pickListWidth: 250,
@@ -71,20 +64,32 @@ isc.defineClass("Work", "myWindow").addProperties({
 				{name: "taskCategoryID",
 					title: "Category",
 					optionDataSource: isc.Shared.taskCategoryDS,
-					optionCriteria: {status: 1},
+					optionCriteria: {active: "Y"},
 					displayField: "categoryName",
 					valueField: "categoryID",
-					width: 75
+					width: 60
 				},
 				{name: "projectID",
-					title: "Project",
+					type: "integer",
 					optionDataSource: isc.Shared.taskProjectsDS,
+					optionCriteria: {active: "Y"},
 					displayField: "projectName",
-					optionCriteria: {status: 1},
 					valueField: "projectID",
+					required: true,
+					showGridSummary: false,
+					pickListWidth: 200,
+					pickListProperties: {
+						showFilterEditor: true
+					},
+					pickListFields: [
+						{name: "projectCode", width: 75},
+						{name: "projectName", width: "*"}
+					],
 					width: "*"
 				},
-				{name: "ticketCode", title: "Ticket", width: 75}
+				{name: "ticketCode", title: "Ticket", width: 70},
+				{name: "description", type: "text", width: 100, detail: true},
+
 			]
 		});
 		this.WorkDF = isc.myDynamicForm.create({
@@ -102,7 +107,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 			name: "Work",
 			dataSource: this.TasksDS,
 			showFilterEditor: false,
-			canEdit: false,
+			showGridSummary: true,
 			canSort: false,
 			fetchData: function(criteria, callback, requestProperties){
 				var today = this.parent.WorkDF.getValue("taskDate");

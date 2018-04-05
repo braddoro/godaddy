@@ -36,16 +36,18 @@ isc.defineClass("Login", "myWindow").addProperties({
 		if(formData.USER_NAME > ""){
 			this.LoginDS.addData(formData,{target: this, methodName: "submitData_callback"});
 		} else{
-			isc.warn("A username is necessary.");
+			isc.warn("A username usually a good iden when wanting to log into things. Or not. I don't really care. You can do it your way if you want.");
 		}
 	},
 	submitData_callback: function(rpcResponse){
 		var userData = rpcResponse.data[0];
 		if(userData === undefined){
-			isc.warn("Improper Credentials");
+			isc.warn("So in theory that should have worked but one of us did something wrong. Probably it was you.");
 		} else {
 			isc.userData = userData;
 			this.destroy();
+			isc.Work.create({width: 350, height: 600, top: 25, left: 5});
+			isc.Items.create({width: 800, height: 350, top: 0, left: 300});
 		}
 	}
 });

@@ -43,6 +43,7 @@ isc.defineClass("Items", "myWindow").addProperties({
 			parent: this,
 			name: "Items",
 			dataSource: this.ItemsDS,
+			showRowNumbers: true,
 			rowContextClick: function(record, rowNum, colNum){
 				this.parent.localContextMenu.showContextMenu();
 				var now = new Date();

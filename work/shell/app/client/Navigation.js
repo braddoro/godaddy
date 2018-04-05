@@ -12,10 +12,10 @@ isc.defineClass("Navigation", "Menu").addProperties({
 		this.MiscTables = isc.myMenu.create({
 			title: "Task Entry",
 			items: [
-				{title: "Projects", click: "isc.TaskProjects.create({width: 800, height: 300})"},
+				{title: "Projects", click: "isc.TaskProjects.create({width: 500, height: 300})"},
 				{title: "Categories", click: "isc.TaskCategories.create({width: 500, height: 300})"},
 				{title: "Statuses", click: "isc.Statuses.create({width: 500, height: 300})"},
-				{title: "Users", click: "isc.Users.create({width: 600, height: 300})"}
+				{title: "Users", click: "isc.Users.create({width: 500, height: 300})"}
 			]
 		});
 		this.mainMenu = isc.myMenu.create({
@@ -23,8 +23,8 @@ isc.defineClass("Navigation", "Menu").addProperties({
 			showShadow: true,
 			items: [
 				{title: "Log Work", click: "isc.Work.create({width: 350, height: 600, top: 25, left: 5})"},
-				{title: "To Do Items", click: "isc.Items.create({height: 400, width: 1000})"},
-				{title: "Task History", click: "isc.Tasks.create({width: 1000, height: 400, top: 5, left: 25, currUserID: isc.userData.userID})"},
+				{title: "To Do Items", click: "isc.Items.create({width: 800, height: 350, top: 0, left: 300})"},
+				{title: "Task History", click: "isc.Tasks.create({width: 1000, height: 600, top: 5, left: 200, currUserID: isc.userData.userID})"},
 				{isSeparator: true},
 				{title: "Misc Tables", submenu: this.MiscTables},
 				{title: "Quotes", click: "isc.Quotes.create({width: 600, height: 300})"},
