@@ -1,14 +1,5 @@
 isc.defineClass("Navigation", "Menu").addProperties({
 	initWidget: function(initData){
-		this.AgileMenu = isc.myMenu.create({
-			title: "Agile",
-			items: [
-				{title: "Projecs", enabled: false, click: "isc.Epics.create()"},
-				{title: "Epics", click: "isc.Epics.create()"},
-				{title: "Sprints", enabled: false, click: "isc.Sprints.create()"},
-				{title: "User Stories", click: "isc.UserStories.create()"}
-			]
-		});
 		this.MiscTables = isc.myMenu.create({
 			title: "Task Entry",
 			items: [
@@ -23,13 +14,12 @@ isc.defineClass("Navigation", "Menu").addProperties({
 			showShadow: true,
 			items: [
 				{title: "Log Work", click: "isc.Work.create({width: 350, height: 600, top: 25, left: 5})"},
-				{title: "To Do Items", click: "isc.Items.create({width: 800, height: 350, top: 0, left: 300})"},
-				{title: "Task History", click: "isc.Tasks.create({width: 1000, height: 600, top: 5, left: 200, currUserID: isc.userData.userID})"},
+				{title: "To Do Items", click: "isc.Items.create({width: 800, height: 350, top: 1, left: 360})"},
+				{title: "Task History", click: "isc.Tasks.create({width: 1000, height: 600,  top: 5, left: 200, currUserID: isc.userData.userID})"},
 				{isSeparator: true},
 				{title: "Misc Tables", submenu: this.MiscTables},
 				{title: "Quotes", click: "isc.Quotes.create({width: 600, height: 300})"},
-				{title: "Threads", enabled: false, click: "isc.Threads.create({width: 600, height: 300})"},
-				{title: "Agile", enabled: false, submenu: this.AgileMenu},
+				{title: "User Stories", click: "isc.UserStories.create({width: 1200, height: 600, top: 20, left: 5})"},
 				{title: "Brew Log", click: "isc.BrewLog.create({width: \"95%\", height: \"50%\"})"}
 			]
 		});

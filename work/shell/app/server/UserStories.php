@@ -1,12 +1,13 @@
 <?php
-require_once('../../lib/DataModel.php');
+require_once('../../../DataModel/DataModel.php');
 $params = array(
-	'baseTable' => 'agile_user_stories',
+	'baseTable' => 'userStories',
 	'pk_col' => 'userStoryID',
 	'allowedOperations' => array('fetch','add','update','remove'),
 	'ini_file' => realpath('../../lib/server.ini')
 );
-$lclass = New DataModel($params);
+$lclass = New DataModel();
+$lclass->init($params);
 if($lclass->status != 0){
 	$response = array('status' => $lclass->status, 'errorMessage' => $lclass->errorMessage);
 	echo json_encode($response);

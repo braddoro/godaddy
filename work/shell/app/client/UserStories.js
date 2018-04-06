@@ -5,34 +5,35 @@ isc.defineClass("UserStories", "myWindow").addProperties({
 		this.UserStoriesDS = isc.myDataSource.create({
 			dataURL: serverPath + "UserStories.php",
 			fields:[
-				{name: "userStoryID",
-					primaryKey: true,
-					type: "sequence",
-					detail: true,
-					canEdit: false
-				},
+				{name: "userStoryID", primaryKey: true, type: "sequence", detail: true, canEdit: false},
 				{name: "projectID",
-					// type: "integer",
-					width: 80,
-					optionDataSource: isc.Shared.projectListDS,
+					type: "integer",
+					optionDataSource: isc.Shared.taskProjectsDS,
+					optionCriteria: {active: "Y"},
 					displayField: "projectName",
-					valueField: "projectID"
+					valueField: "projectID",
+					required: true,
+					pickListWidth: 250,
+					pickListProperties: {showFilterEditor: true},
+					pickListFields: [{name: "projectCode", width: 75}, {name: "projectName", width: "*"}],
+					width: 150
 				},
-				{name: "epicID",
-					// type: "integer",
-					width: 80,
-					optionDataSource: isc.Shared.epicListDS,
-					displayField: "epicName",
-					valueField: "epicID"
+				{name: "userID",
+					type: "integer",
+					optionDataSource: isc.Shared.taskUsersDS,
+					optionCriteria: {active: "Y"},
+					displayField: "userName",
+					valueField: "userID",
+					required: true,
+					width: 100
 				},
-				{name: "sprintID", type: "integer", width: 80},
-				{name: "author", width: 80},
+				{name: "statusID", width: 80, type: "integer", optionDataSource: isc.Shared.statusDS, displayField: "status", valueField: "statusID", required: true},
+				{name: "sprintID", type: "integer", width: 80, editorType: "Spinner"},
 				{name: "storyName", width: 150},
-				{name: "role", width: "25%", title: "As a"},
+				{name: "role", width: 120, title: "As a"},
 				{name: "something", width: "25%", title: "I want"},
 				{name: "benefit", width: "25%", title: "So that"},
-				{name: "completed", type: "boolean", width: 80},
-				{name: "lastChangeDate", width: 120, canEdit: false}
+				{name: "lastChangeDate", width: 120, canEdit: false, detail: true}
 			]
 		});
 		this.UserStoriesLG = isc.myListGrid2.create({

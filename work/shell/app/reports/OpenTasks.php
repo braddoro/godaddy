@@ -23,7 +23,7 @@ $params['sql'] = '
 	P.projectCode,
 	P.projectName,
 	S.status,
-	I.ticket,
+	I.ticketKey,
 	I.itemDate,
 	I.item
 	from Items I

@@ -62,7 +62,7 @@ $params['sql'] = '
 		P.projectCode,
 		P.projectName,
 		S.status,
-		I.ticket,
+		I.ticketKey,
 		I.itemDate,
 		I.item
 	from Items I
@@ -122,7 +122,7 @@ $params['sql'] = '
 	select
 		P.projectCode,
 		P.projectName,
-		coalesce(T.ticketCode,T.description) as ticketCode,
+		coalesce(T.ticketKey,T.description) as ticketKey,
 		sum(T.duration) as Hours,
 		CONCAT(round(round(sum(T.duration)/ ' . $total . ',3)*100,1), \'%\') Percent
 	from tasks T
@@ -134,11 +134,11 @@ $params['sql'] = '
 	group by
 		P.projectCode,
 		P.projectName,
-		coalesce(T.ticketCode,T.description)
+		coalesce(T.ticketKey,T.description)
 	order by
 		P.projectCode,
 		P.projectName,
-		coalesce(T.ticketCode,T.description);';
+		coalesce(T.ticketKey,T.description);';
 $html .= $lclass->init($params);
 
 $html .= '<hr><br/>';
@@ -262,7 +262,7 @@ $params['sql'] = '
 		T.duration,
 		P.projectCode,
 		P.projectName,
-		T.ticketCode,
+		T.ticketKey,
 		T.description,
 		T.lastChangeDate
 	from tasks T

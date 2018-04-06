@@ -63,9 +63,17 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 					],
 					width: 150
 				},
-				{name: "ticketCode",
+				{name: "ticketKey",
+					title: "Ticket",
+					width: 70,
 					type: "text",
-					width: 100
+					formatCellValue: function (value) {
+						var formatted;
+						if (value) {
+							formatted = "<a href='http://jira.prod.icd/browse/" + value + "' target='_blank'>" + value + "</a>";
+						}
+						return formatted;
+					}
 				},
 				{name: "description",
 					type: "text",

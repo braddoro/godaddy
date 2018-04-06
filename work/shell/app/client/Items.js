@@ -31,7 +31,18 @@ isc.defineClass("Items", "myWindow").addProperties({
 					width: 150
 				},
 				{name: "statusID", type: "integer", optionDataSource: isc.Shared.statusDS, displayField: "status", valueField: "statusID", required: true},
-				{name: "ticket", type: "text"},
+				{name: "ticketKey",
+					title: "Ticket",
+					width: 70,
+					type: "text",
+					formatCellValue: function (value) {
+						var formatted;
+						if (value) {
+							formatted = "<a href='http://jira.prod.icd/browse/" + value + "' target='_blank'>" + value + "</a>";
+						}
+						return formatted;
+					}
+				},
 				{name: "type", type: "text", detail: true},
 				{name: "action", type: "text", detail: true},
 				{name: "itemDate", width: 120, editorType: "DateItem", inputFormat: "toUSShortDate", displayFormat: "toSerializeableDate", useTextField: true},

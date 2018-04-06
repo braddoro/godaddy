@@ -15,7 +15,10 @@ isc.defineClass("myWindow", "Window").addProperties({
 	left: 25,
 	top: 25,
 	resized: function(){
-		//console.log("height: " + this.height  + "\n" + "width: " + this.width  + "\n" + "left: " + this.left  + "\n" + "top: " + this.top + "\n");
+		// console.log("height: " + this.height  + "\n" + "width: " + this.width  + "\n" + "left: " + this.left  + "\n" + "top: " + this.top + "\n");
+	},
+	moved: function(deltaX, deltaY){
+		// console.log("height: " + this.height  + "\n" + "width: " + this.width  + "\n" + "left: " + this.left  + "\n" + "top: " + this.top + "\n");
 	}
 });
 isc.defineClass("myVLayout", "VLayout").addProperties({

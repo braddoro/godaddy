@@ -87,9 +87,19 @@ isc.defineClass("Work", "myWindow").addProperties({
 					],
 					width: "*"
 				},
-				{name: "ticketCode", title: "Ticket", width: 70},
-				{name: "description", type: "text", width: 100, detail: true},
-
+				{name: "ticketKey",
+					title: "Ticket",
+					width: 70,
+					type: "text",
+					formatCellValue: function (value) {
+						var formatted;
+						if (value) {
+							formatted = "<a href='http://jira.prod.icd/browse/" + value + "' target='_blank'>" + value + "</a>";
+						}
+						return formatted;
+					}
+				},
+				{name: "description", type: "text", width: 100, detail: true}
 			]
 		});
 		this.WorkDF = isc.myDynamicForm.create({
