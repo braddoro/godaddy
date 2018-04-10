@@ -51,7 +51,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 					width: 150
 				},
 				{name: "duration",  type: "float", required: true, width: 75, defaultValue: 1},
-				{name: "ticketCode", type: "text", width: 100},
+				{name: "ticketKey", type: "text", width: 100},
 				{name: "description", type: "text", width: "*"},
 				{name: "lastChangeDate", visible: false}
 			]
@@ -140,7 +140,7 @@ isc.defineClass("Work", "myWindow").addProperties({
 	submitData_callback: function(rpcResponse){
 		this.TasksLG.fetchData();
 		this.TasksLG.refreshData();
-		this.WorkDF.setValue("ticketCode","");
+		this.WorkDF.setValue("ticketKey","");
 		this.WorkDF.setValue("description","");
 		this.WorkDF.setValue("taskCategoryID","");
 		this.WorkDF.setValue("projectID","");
