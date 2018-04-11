@@ -1,18 +1,18 @@
-isc.defineClass("TaskCategories", "myWindow").addProperties({
+isc.defineClass("Categories", "myWindow").addProperties({
 	title: "Categories",
 	left: isc.Math.random(150),
 	top: isc.Math.random(150),
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
-		this.TaskCategoriesLG = isc.myListGrid2.create({
+		this.CategoriesLG = isc.myListGrid2.create({
 			parent: this,
 			name: "Categories",
-			dataSource: isc.Shared.taskCategoryDS
+			dataSource: isc.Shared.categoriesDS
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,
-			callingListGrid: this.TaskCategoriesLG
+			callingListGrid: this.CategoriesLG
 		});
-		this.addItem(isc.myVLayout.create({members: [this.TaskCategoriesLG]}));
+		this.addItem(isc.myVLayout.create({members: [this.CategoriesLG]}));
 	}
 });

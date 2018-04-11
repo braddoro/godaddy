@@ -1,8 +1,8 @@
 <?php
 require_once('../../../DataModel/DataModel.php');
 $params = array(
-	'baseTable' => 'taskCategories',
-	'pk_col' => 'categoryID',
+	'baseTable' => 'projects',
+	'pk_col' => 'projectID',
 	'allowedOperations' => array('fetch','add','update','remove'),
 	'ini_file' => realpath('../../lib/server.ini')
 );

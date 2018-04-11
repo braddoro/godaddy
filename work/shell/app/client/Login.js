@@ -46,8 +46,8 @@ isc.defineClass("Login", "myWindow").addProperties({
 		} else {
 			isc.userData = userData;
 			this.destroy();
-			isc.Work.create({width: 350, height: 600, top: 25, left: 5});
-			isc.Items.create({width: 800, height: 350, top: 1, left: 360});
+//			isc.Work.create({width: 350, height: 600, top: 25, left: 5});
+//			isc.Items.create({width: 800, height: 350, top: 1, left: 360});
 		}
 	}
 });

@@ -44,8 +44,8 @@ $params['sql'] = '
 	select
 		sum(T.duration) Hours
 	from tasks T
-		inner join taskProjects P on T.projectID = P.projectID
-		inner join taskCategories C on T.taskCategoryID = C.categoryID
+		inner join projects P on T.projectID = P.projectID
+		inner join categories C on T.taskCategoryID = C.categoryID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate;';
@@ -66,7 +66,7 @@ $params['sql'] = '
 		I.itemDate,
 		I.item
 	from Items I
-	left join taskProjects P
+	left join projects P
 		on I.projectID = P.projectID
 	left join statuses S
 		on I.statusID = S.statusID
@@ -86,7 +86,7 @@ $params['sql'] = '
 		sum(T.duration) as Hours,
 		CONCAT(round(round(sum(T.duration)/ ' . $total . ',3)*100,1), \'%\') Percent
 	from tasks T
-		inner join taskProjects P on T.projectID = P.projectID
+		inner join projects P on T.projectID = P.projectID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate
@@ -106,7 +106,7 @@ $params['sql'] = '
 		sum(T.duration) as Hours,
 		CONCAT(round(round(sum(T.duration)/ ' . $total . ',3)*100,1), \'%\') Percent
 	from tasks T
-		inner join taskCategories C on T.taskCategoryID = C.categoryID
+		inner join categories C on T.taskCategoryID = C.categoryID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate
@@ -126,7 +126,7 @@ $params['sql'] = '
 		sum(T.duration) as Hours,
 		CONCAT(round(round(sum(T.duration)/ ' . $total . ',3)*100,1), \'%\') Percent
 	from tasks T
-		inner join taskProjects P on T.projectID = P.projectID
+		inner join projects P on T.projectID = P.projectID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate
@@ -152,7 +152,7 @@ $params['sql'] = '
 		sum(T.duration) as Hours,
 		CONCAT(round(round(sum(T.duration)/ ' . $total . ',3)*100,1), \'%\') Percent
 	from tasks T
-		inner join taskProjects P on T.projectID = P.projectID
+		inner join projects P on T.projectID = P.projectID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate
@@ -191,7 +191,7 @@ $params['sql'] = '
 		sum(T.duration) as Hours,
 		CONCAT(round(round(sum(T.duration)/ ' . $total . ',3)*100,1), \'%\') Percent
 	from tasks T
-		inner join taskProjects P on T.projectID = P.projectID
+		inner join projects P on T.projectID = P.projectID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate
@@ -214,8 +214,8 @@ $params['sql'] = '
 		sum(T.duration) as Hours,
 		CONCAT(round(round(sum(T.duration)/ ' . $total . ',3)*100,1), \'%\') Percent
 	FROM tasks T
-		inner join taskProjects P on T.projectID = P.projectID
-		inner join taskCategories C on T.taskCategoryID = C.categoryID
+		inner join projects P on T.projectID = P.projectID
+		inner join categories C on T.taskCategoryID = C.categoryID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate
@@ -238,8 +238,8 @@ $params['sql'] = '
 		sum(T.duration) Hours,
 		CONCAT(round(round(sum(T.duration)/ ' . $total . ',3)*100,1), \'%\') Percent
 	from tasks T
-		inner join taskProjects P on T.projectID = P.projectID
-		inner join taskCategories C on T.taskCategoryID = C.categoryID
+		inner join projects P on T.projectID = P.projectID
+		inner join categories C on T.taskCategoryID = C.categoryID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate
@@ -266,8 +266,8 @@ $params['sql'] = '
 		T.description,
 		T.lastChangeDate
 	from tasks T
-		inner join taskProjects P on T.projectID = P.projectID
-		inner join taskCategories C on T.taskCategoryID = C.categoryID
+		inner join projects P on T.projectID = P.projectID
+		inner join categories C on T.taskCategoryID = C.categoryID
 	where
 		userID = :userid
 		and T.taskDate between :startdate and :enddate

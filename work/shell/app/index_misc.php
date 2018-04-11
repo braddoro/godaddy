@@ -48,8 +48,8 @@ $classes[] = "Shared.js";
 $classes[] = "Items.js";
 $classes[] = "UserStories.js";
 $classes[] = "Tasks.js";
-$classes[] = "TaskProjects.js";
-$classes[] = "TaskCategories.js";
+$classes[] = "Projects.js";
+$classes[] = "Categories.js";
 $classes[] = "Quotes.js";
 $classes[] = "Threads.js";
 $classes[] = "Users.js";
@@ -58,6 +58,7 @@ $classes[] = "ShowQuote.js";
 $classes[] = "Statuses.js";
 $classes[] = "Work.js";
 $classes[] = "BrewLog.js";
+$classes[] = "HtmlViewer.js";
 $content = "";
 foreach($classes as $class) {
 	if(file_exists($client_path . $class)){

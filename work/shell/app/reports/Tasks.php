@@ -27,7 +27,7 @@ $params['sql'] = '
 	I.itemDate,
 	I.item
 	from Items I
-	left join taskProjects P on I.projectID = P.projectID
+	left join projects P on I.projectID = P.projectID
 	left join statuses S on I.statusID = S.statusID
 	where I.userID = :userid
 	order by I.itemDate, S.status, P.projectCode;';
