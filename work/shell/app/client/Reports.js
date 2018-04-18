@@ -10,8 +10,8 @@ isc.defineClass("Reports", "myWindow").addProperties({
 			parent: this,
 			margin: 5,
 			fields: [
-				{name: "START_DATE", title: "Start", type: "date", editorType: "date", useTextField: true},
-				{name: "END_DATE", title: "End", type: "date",	editorType: "date", useTextField: true}
+				{name: "START_DATE", title: "Start", type: "date", editorType: "date", useTextField: true, width: 100},
+				{name: "END_DATE", title: "End", type: "date", editorType: "date", useTextField: true, width: 100}
 			]
 		});
 		this.ReportsBT = isc.myIButton.create({
