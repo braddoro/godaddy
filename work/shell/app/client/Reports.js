@@ -1,24 +1,32 @@
-Date.setInputFormat("YMD");
 isc.defineClass("Reports", "myWindow").addProperties({
-	title: "Reports",
+	title: "Status Reports",
+	width: 300,
+	height: 150,
 	left: isc.Math.random(150),
 	top: isc.Math.random(150),
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.ReportsDF = isc.myDynamicForm.create({
 			parent: this,
+			margin: 5,
 			fields: [
-				{name: "START_DATE", title: "Start", type: "date", editorType: "date"},
-				{name: "END_DATE", title: "End", type: "date",	editorType: "date"}
+				{name: "START_DATE", title: "Start", type: "date", editorType: "date", useTextField: true},
+				{name: "END_DATE", title: "End", type: "date",	editorType: "date", useTextField: true}
 			]
 		});
 		this.ReportsBT = isc.myIButton.create({
 			parent: this,
 			title: "Submit",
 			align: "center",
+			margin: 5,
 			click: function(){this.parent.submitData();}
 		});
-		this.addItem(isc.myVLayout.create({members: [this.ReportsDF, this.ReportsBT]}));
+		this.ReportLB = isc.myLabel.create({
+			contents: "Status Report",
+			margin: 5,
+			height: 20
+		});
+		this.addItem(isc.myVLayout.create({members: [this.ReportLB, this.ReportsDF, this.ReportsBT]}));
 	},
 	submitData: function(){
 		var baseurl = "http://untrust3d.com/work/shell/app/reports/Status.php";
