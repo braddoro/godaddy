@@ -3,10 +3,10 @@ isc.defineClass("Navigation", "Menu").addProperties({
 		this.miscMenu = isc.myMenu.create({
 			title: "Task Entry",
 			items: [
-				{title: "Projects", click: "isc.Projects.create()"},
-				{title: "Categories", click: "isc.Categories.create()"},
-				{title: "Statuses", click: "isc.Statuses.create()"},
-				{title: "Users", click: "isc.Users.create()"}
+				{title: "Projects", click: "isc.Projects.create();"},
+				{title: "Categories", click: "isc.Categories.create();"},
+				{title: "Statuses", click: "isc.Statuses.create();"},
+				{title: "Users", click: "isc.Users.create();"}
 			]
 		});
 		this.reportMenu = isc.myMenu.create({
@@ -20,13 +20,13 @@ isc.defineClass("Navigation", "Menu").addProperties({
 			title: "...",
 			showShadow: true,
 			items: [
-				{title: "Log Work", click: "isc.Work.create({width: 350, height: 600, top: 25, left: 5})"},
-				{title: "To Do Items", click: "isc.Items.create({width: 800, height: 350, top: 1, left: 360})"},
-				{title: "Task History", click: "isc.Tasks.create({width: 1000, height: 600,  top: 5, left: 200, currUserID: isc.userData.userID})"},
+				{title: "Log Work", click: "isc.Work.create({width: 350, height: 600, top: 25, left: 5});"},
+				{title: "To Do Items", click: "isc.Items.create({width: 800, height: 350, top: 1, left: 360});"},
+				{title: "Task History", click: "isc.History.create({width: 1000, height: 600,  top: 5, left: 200, currUserID: isc.userData.userID});"},
 				{isSeparator: true},
-				{title: "Quotes", click: "isc.Quotes.create()"},
-				{title: "User Stories", click: "isc.UserStories.create({width: 1200, height: 600, top: 20, left: 5})"},
-				{title: "Brew Log", click: "isc.BrewLog.create({width: \"95%\", height: \"50%\"})"},
+				{title: "Quotes", click: "isc.Quotes.create();"},
+				{title: "User Stories", click: "isc.UserStories.create({width: 1200, height: 600, top: 20, left: 5});"},
+				{title: "Brew Log", click: "isc.BrewLog.create({width: \"95%\", height: \"50%\"});"},
 				{isSeparator: true},
 				{title: "Reports", submenu: this.reportMenu},
 				{title: "Misc Tables", submenu: this.miscMenu}

@@ -137,6 +137,13 @@ isc.defineClass("Work", "myWindow").addProperties({
 		});
 		this.WorkVL = isc.myVLayout.create({members: [this.WorkDF, this.WorkBT, this.TasksLG]});
 		this.addItem(this.WorkVL);
+		var moreCriteria = {
+			projectID: initData.projectID,
+			ticketKey: initData.ticketKey,
+			taskCategoryID: 6,
+			duration: .5
+		};
+		this.WorkDF.setData(isc.addProperties({}, moreCriteria));
 	},
 	submitData: function(){
 		var formData = this.WorkDF.getValues();

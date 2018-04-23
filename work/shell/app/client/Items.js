@@ -63,7 +63,15 @@ isc.defineClass("Items", "myWindow").addProperties({
 				return false;
 			},
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
-				this.startEditing(recordNum);
+				var moreCriteria = {
+					projectID: record.projectID,
+					ticketKey: record.ticketKey,
+					width: 350,
+					height: 600,
+					top: 25,
+					left: 5
+				};
+				isc.Work.create(moreCriteria);
 			},
 			startEditingNew: function(newValues, suppressFocus){
 				var now = new Date();

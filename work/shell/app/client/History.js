@@ -1,11 +1,11 @@
-isc.defineClass("Tasks", "myWindow").addProperties({
-	title: "Task List",
+isc.defineClass("History", "myWindow").addProperties({
+	title: "Task History",
 	currUserID: 0,
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
-		this.TasksDS = isc.myDataSource.create({
+		this.HistoryDS = isc.myDataSource.create({
 			parent: this,
-			dataURL: serverPath + "Tasks.php",
+			dataURL: serverPath + "History.php",
 			fields:[
 				{name: "taskID",
 					primaryKey: true,
@@ -88,10 +88,10 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 				}
 			]
 		});
-		this.TasksLG = isc.myListGrid2.create({
+		this.HistoryLG = isc.myListGrid2.create({
 			parent: this,
 			name: "Tasks",
-			dataSource: this.TasksDS,
+			dataSource: this.HistoryDS,
 			showGridSummary: true,
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
 				this.startEditing(recordNum);
@@ -108,9 +108,9 @@ isc.defineClass("Tasks", "myWindow").addProperties({
 		});
 		this.localContextMenu = isc.myContextMenu.create({
 			parent: this,
-			callingListGrid: this.TasksLG
+			callingListGrid: this.HistoryLG
 		});
-		this.addItem(isc.myVLayout.create({members: [this.TasksLG]}));
-		this.TasksDS.filterData({userID: this.currUserID});
+		this.addItem(isc.myVLayout.create({members: [this.HistoryLG]}));
+		this.HistoryDS.filterData({userID: this.currUserID});
 	}
 });
