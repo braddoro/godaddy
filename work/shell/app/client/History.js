@@ -7,18 +7,8 @@ isc.defineClass("History", "myWindow").addProperties({
 			parent: this,
 			dataURL: serverPath + "History.php",
 			fields:[
-				{name: "taskID",
-					primaryKey: true,
-					type: "sequence",
-					canEdit: false,
-					detail: true
-				},
-				{name: "taskDate",
-					title: "Date",
-					editorType: "DateItem",
-					validators: [{type: "isDate"}],
-					width: 120
-				},
+				{name: "taskID", primaryKey: true, type: "sequence", canEdit: false, detail: true},
+				{name: "taskDate", title: "Date", editorType: "DateItem", validators: [{type: "isDate"}], width: 120},
 				{name: "userID",
 					type: "text",
 					optionDataSource: isc.Shared.usersDS,
@@ -31,11 +21,7 @@ isc.defineClass("History", "myWindow").addProperties({
 					includeInRecordSummary: false,
 					defaultValue: isc.userData.userID
 				},
-				{name: "duration",
-					type: "float",
-					required: true,
-					width: 75
-				},
+				{name: "duration", type: "float", required: true, width: 75},
 				{name: "taskCategoryID",
 					type: "integer",
 					showGridSummary: false,
@@ -78,19 +64,13 @@ isc.defineClass("History", "myWindow").addProperties({
 						return formatted;
 					}
 				},
-				{name: "description",
-					type: "text",
-					width: "*"
-				},
-				{name: "lastChangeDate",
-					canEdit: false,
-					detail: true
-				}
+				{name: "description", type: "text", width: "*"},
+				{name: "lastChangeDate", canEdit: false, detail: true}
 			]
 		});
 		this.HistoryLG = isc.myListGrid2.create({
 			parent: this,
-			name: "Tasks",
+			name: "History",
 			dataSource: this.HistoryDS,
 			showGridSummary: true,
 			rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {

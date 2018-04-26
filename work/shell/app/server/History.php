@@ -17,6 +17,21 @@ $argsIN = array_merge($_POST,$_GET);
 $operationType = (isset($argsIN['operationType'])) ? $argsIN['operationType'] : null;
 switch($operationType){
 case 'fetch':
+	if(isset($argsIN['userID'])) {
+		$userID = ($argsIN['userID'] > 0) ? $argsIN['userID'] : NULL;
+	}else{
+		$userID = 'NULL';
+	}
+	if(isset($argsIN['taskDate'])) {
+		$taskDate = $argsIN['taskDate'];
+	}else{
+		$taskDate = 'NULL';
+	}
+	$argsIN['sql'] = "
+	select * from tasks t where
+		t.taskID = coalesce(:id, t.taskID)
+		and t.userID = coalesce($userID, t.userID)
+		and t.taskDate = coalesce('$taskDate', t.taskDate);";
 	$response = $lclass->pdoFetch($argsIN);
 	break;
 case 'add':
