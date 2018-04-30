@@ -1,5 +1,4 @@
 isc.defineClass("Quotes", "myWindow").addProperties({
-	title: "Quotes",
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.QuotesDS = isc.myDataSource.create({

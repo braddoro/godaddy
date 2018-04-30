@@ -1,5 +1,4 @@
 isc.defineClass("BrewLog", "myWindow").addProperties({
-	title: "Brew Log",
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.BrewLogDS = isc.myDataSource.create({
@@ -40,7 +39,7 @@ isc.defineClass("BrewLog", "myWindow").addProperties({
 		});
 		this.BrewLogLG = isc.myListGrid2.create({
 			parent: this,
-			name: "Logs",
+			name: "Brew Log",
 			dataSource: this.BrewLogDS,
  			startEditingNew: function(newValues, suppressFocus){
 				var now = new Date();

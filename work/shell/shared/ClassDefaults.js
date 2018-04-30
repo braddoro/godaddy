@@ -93,11 +93,34 @@ isc.defineClass("myListGrid2", "ListGrid").addProperties({
 		this.parent.localContextMenu.showContextMenu();
 		return false;
 	},
+	doubleClick: function(){
+		if(this.getTotalRows() > 0){
+		} else{
+			this.startEditingNew();
+		}
+		return true;
+	},
+	recordClick: function(viewer, record, recordNum, field, fieldNum, value, rawValue){
+		var selected = viewer.getSelectedRecords();
+		var count = selected.length;
+		var single = 1;
+		var name = "";
+		var title = "";
+		if (viewer.name) {
+			name = viewer.name;
+		}
+		if(count > single){
+			title = name + " : Selected Rows - " + count;
+		}else{
+			title = name + " : Total Rows - " + this.getTotalRows();
+		}
+		viewer.parent.setTitle(title);
+	},
 	rowDoubleClick: function(record, recordNum, fieldNum, keyboardGenerated) {
 		this.startEditing(recordNum);
 	},
 	updateStatus: function() {
-		this.parent.setTitle(this.name + " : Rows - " + this.getTotalRows());
+		this.parent.setTitle(this.name + " : Total Rows - " + this.getTotalRows());
 		this.focus();
 	},
 	dataArrived: function(){

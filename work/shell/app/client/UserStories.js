@@ -1,5 +1,4 @@
 isc.defineClass("UserStories", "myWindow").addProperties({
-	title: "User Stories",
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.UserStoriesDS = isc.myDataSource.create({
@@ -8,10 +7,11 @@ isc.defineClass("UserStories", "myWindow").addProperties({
 				{name: "userStoryID", primaryKey: true, type: "sequence", detail: true, canEdit: false},
 				{name: "projectID",
 					type: "integer",
-					optionDataSource: isc.Shared.taskProjectsDS,
+					optionDataSource: isc.Shared.projectsDS,
 					optionCriteria: {active: "Y"},
 					displayField: "projectName",
 					valueField: "projectID",
+					fetchMissingValues: true,
 					required: true,
 					pickListWidth: 250,
 					pickListProperties: {showFilterEditor: true},
@@ -19,13 +19,16 @@ isc.defineClass("UserStories", "myWindow").addProperties({
 					width: 150
 				},
 				{name: "userID",
-					type: "integer",
-					optionDataSource: isc.Shared.taskUsersDS,
+					type: "text",
+					optionDataSource: isc.Shared.usersDS,
 					optionCriteria: {active: "Y"},
 					displayField: "userName",
 					valueField: "userID",
+					fetchMissingValues: true,
 					required: true,
-					width: 100
+					width: 150,
+					includeInRecordSummary: false,
+					defaultValue: isc.userData.userID
 				},
 				{name: "statusID", width: 80, type: "integer", optionDataSource: isc.Shared.statusDS, displayField: "status", valueField: "statusID", required: true},
 				{name: "sprintID", type: "integer", width: 80, editorType: "Spinner"},
@@ -38,7 +41,7 @@ isc.defineClass("UserStories", "myWindow").addProperties({
 		});
 		this.UserStoriesLG = isc.myListGrid2.create({
 			parent: this,
-			name: "Stories",
+			name: "User Stories",
 			dataSource: this.UserStoriesDS,
 			rowContextClick: function(record, rowNum, colNum){
 				this.parent.localContextMenu.showContextMenu();

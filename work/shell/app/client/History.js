@@ -1,5 +1,4 @@
 isc.defineClass("History", "myWindow").addProperties({
-	title: "Task History",
 	currUserID: 0,
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);

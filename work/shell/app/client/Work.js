@@ -1,5 +1,4 @@
 isc.defineClass("Work", "myWindow").addProperties({
-	title: "Work",
 	left: isc.Math.random(150),
 	top: isc.Math.random(150),
 	initWidget: function(initData){

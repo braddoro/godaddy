@@ -1,5 +1,4 @@
 isc.defineClass("Threads", "myWindow").addProperties({
-	title: "Threads",
 	initWidget: function(initData){
 		this.Super("initWidget", arguments);
 		this.ThreadsDS = isc.myDataSource.create({
