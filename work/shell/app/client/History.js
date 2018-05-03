@@ -90,6 +90,6 @@ isc.defineClass("History", "myWindow").addProperties({
 			callingListGrid: this.HistoryLG
 		});
 		this.addItem(isc.myVLayout.create({members: [this.HistoryLG]}));
-		this.HistoryDS.filterData({userID: this.currUserID});
+		this.HistoryLG.fetchData({userID: this.currUserID});
 	}
 });
